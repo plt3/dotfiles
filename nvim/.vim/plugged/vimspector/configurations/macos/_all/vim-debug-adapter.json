@@ -1,0 +1,85 @@
+{
+  "configurations": {
+    "Launch Python": {
+      "adapter": "debugpy",
+      "filetypes": [
+        "python"
+      ],
+      "configuration": {
+        "request": "launch",
+        "program": "${file}",
+        "args": [
+          "${positional_args}"
+        ],
+        "cwd": "${workspaceRoot}",
+        "stopOnEntry": true
+      },
+      "breakpoints": {
+        "exception": {
+          "raised": "N",
+          "uncaught": "",
+          "userUnhandled": ""
+        }
+      }
+    },
+    "Attach Python": {
+      "description": "run script with python3 -m debugpy --listen localhost:5678 --wait-for-client file.py, then set breakpoint in file before launching vimspector",
+      "adapter": "multi-session",
+      "filetypes": [
+        "python"
+      ],
+      "configuration": {
+        "request": "attach"
+      },
+      "breakpoints": {
+        "exception": {
+          "raised": "N",
+          "uncaught": "",
+          "userUnhandled": ""
+        }
+      }
+    },
+    "Launch C++": {
+      "adapter": "CodeLLDB",
+      "filetypes": [
+        "cpp",
+        "c"
+      ],
+      "configuration": {
+        "request": "launch",
+        "program": "${executable_name}",
+        "args": [
+          "${positional_args}"
+        ],
+        "stopOnEntry": true,
+        "externalConsole": true,
+        "MIMode": "lldb"
+      },
+      "breakpoints": {
+        "exception": {
+          "cpp_throw": "",
+          "cpp_catch": ""
+        }
+      }
+    },
+    "Attach C++": {
+      "adapter": "CodeLLDB",
+      "filetypes": [
+        "cpp",
+        "c"
+      ],
+      "configuration": {
+        "request": "attach",
+        "program": "${executable_name}",
+        "stopOnEntry": true,
+        "MIMode": "lldb"
+      },
+      "breakpoints": {
+        "exception": {
+          "cpp_throw": "",
+          "cpp_catch": ""
+        }
+      }
+    }
+  }
+}

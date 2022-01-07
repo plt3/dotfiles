@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Unzip autograder results zipfile and open nvim with all relevant files.
+# -s option gives short summary of how many tests passed and gives option to view files
+# -c option only shows files where tests failed
+# -d option removes the zipfile
+# all options can be combined
+
+zipFile="plt15-PartialResults.zip"
+filesPath="Submissions/plt15/"
+allPassed="100.00% percent passed"
+
+unzip $zipFile &> /dev/null
+
+# this is such a horrible way to parse command-line arguments but
+# sometimes I hate bash
+if echo $@ | grep -q "s"; then
+    passedNum=$(grep -Eo "\d+ passed" "$filesPath""plt15-AutoScores.txt" | cut -d " " -f 1 | paste -sd+ - | bc)
+    failedNum=$(grep -Eo "\d+ failed" "$filesPath""plt15-AutoScores.txt" | cut -d " " -f 1 | paste -sd+ - | bc)
+    totalNum=$((passedNum + failedNum))
+    passedPercent=$((passedNum * 100 / totalNum))
+
+    if [[ $passedPercent -eq 100 ]]; then
+        echo "Great job! All tests passed. ($passedNum/$totalNum)"
+    else
+        echo "$passedPercent% of tests passed. ($passedNum/$totalNum)"
+    fi
+
+    echo
+    read -p "Press Enter to view files or n to exit: " myVar
+fi
+
+if [[ "$myVar" != "n" ]]; then
+    rm "$filesPath""plt15PartialCompilecase"*
+
+    if echo $@ | grep -q "c"; then
+        for filename in "$filesPath""plt15PartialResultsSwitchCase"*; do
+            lastLine=$(sed -n '$p' $filename)
+            if [[ "$lastLine" = "$allPassed" ]]; then
+                rm $filename
+            fi
+        done
+    fi
+
+    nvim -c "nnoremap <silent> <C-n> :bnext<CR>" -c "nnoremap <silent> <C-p> :bprev<CR>" -c "cd $filesPath" "$filesPath"*
+fi
+
+rm -rf Submissions/
+
+if echo $@ | grep -q "d"; then
+    rm $zipFile
+    echo
+    echo "Removed $zipFile."
+fi

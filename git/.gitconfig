@@ -1,0 +1,14 @@
+[user]
+	name = Paul Taylor
+	email = pltorigami@gmail.com
+[core]
+	editor = nvim
+[credential]
+	helper = osxkeychain
+	useHttpPath = true
+[pull]
+	ff = only
+[init]
+	defaultBranch = main
+[diff]
+	tool = nvimdiff
