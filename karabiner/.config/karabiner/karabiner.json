@@ -252,39 +252,6 @@
             ]
           },
           {
-            "description": "log when 6 key is pressed on default keyboard",
-            "manipulators": [
-              {
-                "conditions": [
-                  {
-                    "identifiers": [
-                      {
-                        "description": "internal keyboard",
-                        "product_id": 641,
-                        "vendor_id": 1452
-                      }
-                    ],
-                    "type": "device_if"
-                  }
-                ],
-                "from": {
-                  "key_code": "6",
-                  "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "shell_command": "date '+%-m/%-d/%-y %H:%M:%S' >> /Users/pault/.config/karabiner/sixLog.log"
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
             "description": "open all apps with ctrl + shift + o",
             "manipulators": [
               {

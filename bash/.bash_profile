@@ -41,7 +41,7 @@ alias drma='docker rm -f $(docker ps -qa)'
 alias drmi="docker images | grep '\<none\>' | awk '{ print \$3; }' | xargs docker rmi"
 alias dps="docker ps"
 alias note="~/scripts/openNotes.sh"
-alias iv="cd ~/.config/nvim; nvim init.vim; cd -"
+alias iv="cd ~/.config/nvim; nvim init.vim; cd - > /dev/null"
 alias pf="~/scripts/pipFreezePrune/outputDeps.sh"
 alias memleak="top -pid $(pgrep a.out)"
 

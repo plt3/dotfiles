@@ -1,5 +1,6 @@
 ---
 Language: Cpp
+Language: Java
 # BasedOnStyle:  LLVM
 AccessModifierOffset: -4
 AlignAfterOpenBracket: Align
