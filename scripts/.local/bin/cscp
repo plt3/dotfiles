@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# scp relevant project files to a new directory in cs-class
+
+csclass="plt15@class-1.cs.georgetown.edu"
+
+dirName="project_"$(date '+%-m_%-d_%-y')
+dirCreate="mkdir $dirName"
+
+make clean
+ssh $csclass $dirCreate &> /dev/null
+# scp !(*.pdf|*.zip) $csclass:~/$dirName/
+scp !(*.pdf) $csclass:~/$dirName/

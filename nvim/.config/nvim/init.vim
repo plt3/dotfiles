@@ -163,6 +163,8 @@ smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-T
 xmap <Tab> <Plug>(vsnip-cut-text)
 
 let g:vimtex_view_method='skim'
+autocmd FileType tex nnoremap <buffer> <leader>tc :VimtexCompile<CR>
+autocmd FileType tex nnoremap <buffer> <silent> <leader>tl :VimtexClean<CR> <bar> :silent !rm *.synctex.gz<CR>
 
 " vimux remaps
 let g:VimuxOrientation = "h"

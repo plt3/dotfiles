@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Unzip autograder results zipfile and open nvim with all relevant files.
 # -s option gives short summary of how many tests passed and gives option to view files

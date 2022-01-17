@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# short script to compile most recently edited C++ file and execute it
+
+latest=$(ls -t | head -n1)
+g++ -std=c++11 $latest
+./a.out
+rm a.out

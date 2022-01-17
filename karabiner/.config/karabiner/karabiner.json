@@ -268,7 +268,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "~/scripts/openApps.sh"
+                    "shell_command": "~/.local/bin/openApps"
                   }
                 ],
                 "type": "basic"

@@ -1,8 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # this script opens up neovim with (hopefully) the correct note I want to edit.
-# Alias a nice command ("note") to this file, and then invoke it with note subject
-# or just note to get to the index page.
+# invoke it with note subject or just note to get to the index page.
 
 if [ $1 ]; then
     cd ~/vimwiki/

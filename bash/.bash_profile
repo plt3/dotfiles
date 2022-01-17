@@ -3,13 +3,13 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # set some homebrew environment variables
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-export EDITOR="nvim -u ~/scripts/manInit.vim"
+export EDITOR="nvim -u ~/.config/nvim/manInit.vim"
 
 # I guess I want this? cscp breaks without it due to glob excluding files
 shopt -s extglob
 
 # view man pages in nvim with light config file
-export MANPAGER="/bin/sh -c \"col -b | nvim -u ~/scripts/manInit.vim -c 'set ft=man ts=8 nomod nolist noma' -\""
+export MANPAGER="/bin/sh -c \"col -b | nvim -u ~/.config/nvim/manInit.vim -c 'set ft=man ts=8 nomod nolist noma' -\""
 
 # customize prompt
 PS1="\[$(tput bold)\]\[\033[38;5;196m\]\u\[$(tput sgr0)\] \[$(tput bold)\]@\[$(tput sgr0)\] \[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;82m\]\h\[$(tput sgr0)\] \w\[$(tput sgr0)\] > "
@@ -24,7 +24,6 @@ alias gdc="git diff --cached"
 alias ve="python3 -m venv venv; source venv/bin/activate; pip3 install --upgrade pip; pip3 install ptpython"
 alias ac="source venv/bin/activate"
 alias de="deactivate"
-alias gpp="~/scripts/compileCpp.sh"
 alias ip="ifconfig | grep 'inet ' | grep -v 127.0.0.1 | cut -d ' ' -f 2 | tr -d '\n' | pbcopy && pbpaste && echo"
 alias tt="python3 ~/scripts/typingTest/typingTest.py"
 alias n="nvim"
@@ -40,7 +39,6 @@ alias drm='docker rm -f $(docker ps -q)'
 alias drma='docker rm -f $(docker ps -qa)'
 alias drmi="docker images | grep '\<none\>' | awk '{ print \$3; }' | xargs docker rmi"
 alias dps="docker ps"
-alias note="~/scripts/openNotes.sh"
 alias iv="cd ~/.config/nvim; nvim init.vim; cd - > /dev/null"
 alias pf="~/scripts/pipFreezePrune/outputDeps.sh"
 alias memleak="top -pid $(pgrep a.out)"
@@ -48,9 +46,6 @@ alias memleak="top -pid $(pgrep a.out)"
 # delete after this semester?
 alias cssh="ssh plt15@class-1.cs.georgetown.edu"
 alias runquiz="pbpaste > tmpfile.cpp && g++ -std=c++11 -o paste.out tmpfile.cpp; ./paste.out; rm tmpfile.cpp paste.out"
-alias agrader="~/scripts/readAutograderResults.sh"
-# this gives cscp command
-source ~/scripts/copyFilesToCsclass.sh
 
 source ~/.bashrc
 
