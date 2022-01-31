@@ -44,8 +44,6 @@ autocmd InsertEnter,WinLeave * set nocursorline
 let mapleader = " "
 " to write with mm instead of :w
 nnoremap mm :w<CR>
-" remap Y to be logical
-map Y y$
 " write all buffers
 nnoremap <leader>w :wall<CR>
 " to exit terminal insert mode or whatever
@@ -163,6 +161,7 @@ smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-T
 xmap <Tab> <Plug>(vsnip-cut-text)
 
 let g:vimtex_view_method='skim'
+let g:vimtex_quickfix_mode=0
 autocmd FileType tex nnoremap <buffer> <leader>tc :VimtexCompile<CR>
 autocmd FileType tex nnoremap <buffer> <silent> <leader>tl :VimtexClean<CR> <bar> :silent !rm *.synctex.gz<CR>
 
@@ -244,6 +243,7 @@ Plug 'numToStr/Comment.nvim'
 Plug 'tpope/vim-repeat'
 Plug 'ibhagwan/fzf-lua'
 Plug 'AckslD/nvim-neoclip.lua'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " nvim-cmp
 Plug 'hrsh7th/cmp-nvim-lsp'

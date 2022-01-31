@@ -21,8 +21,6 @@ set scrolloff=8
 
 " remap leader key
 let mapleader = " "
-" remap Y to be logical
-map Y y$
 " to copy/paste to/from system clipboard
 nnoremap <leader>y  "+y
 nnoremap <leader>Y  "+y$
