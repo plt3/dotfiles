@@ -29,7 +29,9 @@
         "python"
       ],
       "configuration": {
-        "request": "attach"
+        "request": "attach",
+        "host": "${host:localhost}",
+        "port#json": "${port:5678}"
       },
       "breakpoints": {
         "exception": {
@@ -78,6 +80,59 @@
         "exception": {
           "cpp_throw": "",
           "cpp_catch": ""
+        }
+      }
+    },
+    "Launch Java": {
+      "description": "compile with javac -g before launching",
+      "adapter": "vscode-java",
+      "filetypes": [
+        "java"
+      ],
+      "configuration": {
+        "request": "launch",
+        "mainClass": "${mainClass}",
+        "sourcePaths": [
+          "${workspaceRoot}/"
+        ],
+        "classPaths": [
+          "${workspaceRoot}/"
+        ],
+        "stopOnEntry": true,
+        "console": "integratedTerminal"
+      },
+      "breakpoints": {
+        "exception": {
+          "raised": "N",
+          "caught": "",
+          "uncaught": "",
+          "userUnhandled": ""
+        }
+      }
+    },
+    "Attach Java": {
+      "description": "compile with javac -g, run with java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5678 MyClass, then set breakpoint before launching vimspector",
+      "adapter": "vscode-java",
+      "filetypes": [
+        "java"
+      ],
+      "configuration": {
+        "request": "attach",
+        "hostName": "${host:localhost}",
+        "port": "${port:5678}",
+        "sourcePaths": [
+          "${workspaceRoot}/"
+        ],
+        "classPaths": [
+          "${workspaceRoot}/"
+        ]
+      },
+      "breakpoints": {
+        "exception": {
+          "raised": "N",
+          "caught": "",
+          "uncaught": "",
+          "userUnhandled": ""
         }
       }
     }

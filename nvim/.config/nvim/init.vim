@@ -112,6 +112,7 @@ let g:markdown_fenced_languages = ["sql", "python", "sh", "html", "css", "javasc
 let g:gruvbox_italic=1
 let g:gruvbox_bold=1
 let g:gruvbox_contrast_dark='hard'
+let g:tokyonight_style='night'
 
 " Write all buffers before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 2
@@ -190,7 +191,6 @@ fun! AddToWatch()
 endfun
 
 nnoremap <leader>m :MaximizerToggle!<CR>
-nnoremap <leader>dd :call vimspector#Launch()<CR>
 nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
 nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
 nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
@@ -244,6 +244,7 @@ Plug 'tpope/vim-repeat'
 Plug 'ibhagwan/fzf-lua'
 Plug 'AckslD/nvim-neoclip.lua'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'jbyuki/venn.nvim'
 
 " nvim-cmp
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -267,6 +268,9 @@ lua require('hop').setup()
 lua require('Comment').setup()
 lua require('fzf-lua').setup({})
 lua require('neoclip').setup()
+
+" use custom vimspector launch function to handle Java as well as other languages
+nnoremap <silent> <leader>dd :lua startVimspector()<CR>
 
 " need this last for it to take precedence
 autocmd FileType vimwiki setlocal colorcolumn=""
