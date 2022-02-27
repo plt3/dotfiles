@@ -55,6 +55,7 @@ nvim_lsp["jdtls"].setup {
   on_attach = on_attach,
   cmd = { 'jdtls' },
   capabilities = capabilities,
+  -- why does debugging still work when this is commented out???
   init_options = {bundles = { "~/.vim/plugged/vimspector/gadgets/macos/vscode-java-debug/server/com.microsoft.java.debug.plugin-0.26.0.jar" }},
   flags = {
     debounce_text_changes = 150,

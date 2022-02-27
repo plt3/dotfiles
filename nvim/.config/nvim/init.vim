@@ -61,10 +61,14 @@ nnoremap <silent> <leader>j o<ESC>k^
 xnoremap <  <gv
 xnoremap >  >gv
 " avoid automatic formatting with neoformat when exiting with :wq[a]
-cnoremap wq noautocmd wq
+cnoremap <expr> wq ((&ft == "gitcommit") ? 'wq': 'noautocmd wq')
+
+" move visual selection up/down with J/K
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 " fzf-lua remaps (first one runs FzfLua git_files but falls back to FzfLua files if not in git repo)
-nnoremap <expr> <leader>g (len(system('git rev-parse')) ? ':FzfLua files<CR>' : ':FzfLua git_files<CR>')
+nnoremap <expr> <leader>h (len(system('git rev-parse')) ? ':FzfLua files<CR>' : ':FzfLua git_files<CR>')
 nnoremap <leader>r :FzfLua grep_project<CR>
 nnoremap <leader>b :FzfLua buffers<CR>
 " get last entries in registers from neoclip
@@ -209,6 +213,15 @@ nmap <leader>dtcb <Plug>VimspectorToggleConditionalBreakpoint
 nmap <leader>di <Plug>VimspectorBalloonEval
 nnoremap <leader>dw :call AddToWatch()<CR>
 
+" Git remaps (Fugitive, Diffview)
+nnoremap <silent> <leader>gs :G<CR>
+" use the diffget remaps when running Gvdiffsplit!
+nnoremap <silent> <leader>gu :diffget //2<CR>
+nnoremap <silent> <leader>gh :diffget //3<CR>
+nnoremap <leader>gd :DiffviewOpen
+nnoremap <silent> <leader>gdc :DiffviewOpen<CR>
+nnoremap <silent> <leader>gc :DiffviewClose<CR>
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sleuth'
@@ -226,8 +239,6 @@ Plug 'vimwiki/vimwiki'
 Plug 'preservim/vimux'
 Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
-
-" neovim 0.5 plugins
 Plug 'neovim/nvim-lspconfig'
 Plug 'phaazon/hop.nvim'
 Plug 'karb94/neoscroll.nvim'
@@ -245,6 +256,9 @@ Plug 'ibhagwan/fzf-lua'
 Plug 'AckslD/nvim-neoclip.lua'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'jbyuki/venn.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'sindrets/diffview.nvim'
+Plug 'tpope/vim-fugitive'
 
 " nvim-cmp
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -257,7 +271,7 @@ Plug 'hrsh7th/cmp-vsnip'
 call plug#end()
 
 set background=dark
-colorscheme gruvbox
+colorscheme tokyonight
 
 lua require('lsp')
 lua require('completion')
@@ -268,6 +282,7 @@ lua require('hop').setup()
 lua require('Comment').setup()
 lua require('fzf-lua').setup({})
 lua require('neoclip').setup()
+lua require('diffview').setup({use_icons = false})
 
 " use custom vimspector launch function to handle Java as well as other languages
 nnoremap <silent> <leader>dd :lua startVimspector()<CR>
@@ -276,5 +291,5 @@ nnoremap <silent> <leader>dd :lua startVimspector()<CR>
 autocmd FileType vimwiki setlocal colorcolumn=""
 
 " fix some really weird gruvbox things
-highlight Visual gui=NONE guifg=NONE guibg=#3a3a3a
-highlight QuickFixLine guifg=Pink guibg=NONE
+" highlight Visual gui=NONE guifg=NONE guibg=#3a3a3a
+" highlight QuickFixLine guifg=Pink guibg=NONE

@@ -10,4 +10,5 @@ dirCreate="mkdir $dirName"
 make clean
 ssh $csclass $dirCreate &> /dev/null
 # scp !(*.pdf|*.zip) $csclass:~/$dirName/
-scp !(*.pdf) $csclass:~/$dirName/
+# scp !(*.pdf) $csclass:~/$dirName/
+scp *.* $csclass:~/$dirName/
