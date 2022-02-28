@@ -158,13 +158,15 @@ let g:neoformat_enabled_javascript=["prettier"]
 let g:neoformat_run_all_formatters = 1
 let g:neoformat_basic_format_trim = 1
 
-" vim-vsnip mappings (tab to expand and go forward, shift + tab to go backwards)
-imap <expr> <Tab>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
-smap <expr> <Tab>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
-imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-xmap <Tab> <Plug>(vsnip-cut-text)
+" luasnip remaps
+imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
+inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
+snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
+snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
+" delete this when I want
+nnoremap <silent> <leader><leader>s :silent wall <bar> source ~/dotfiles/nvim/.config/nvim/lua/snippets.lua<CR>
 
+"vimtex remaps
 let g:vimtex_view_method='skim'
 let g:vimtex_quickfix_mode=0
 autocmd FileType tex nnoremap <buffer> <leader>tc :VimtexCompile<CR>
@@ -246,7 +248,6 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'sbdchd/neoformat'
 Plug 'p00f/nvim-ts-rainbow'
-Plug 'hrsh7th/vim-vsnip'
 Plug 'rafamadriz/friendly-snippets'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
@@ -257,6 +258,7 @@ Plug 'AckslD/nvim-neoclip.lua'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'jbyuki/venn.nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'L3MON4D3/LuaSnip'
 Plug 'sindrets/diffview.nvim'
 Plug 'tpope/vim-fugitive'
 
@@ -266,7 +268,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-vsnip'
+Plug 'saadparwaiz1/cmp_luasnip'
 
 call plug#end()
 
@@ -278,6 +280,7 @@ lua require('completion')
 lua require('scroll')
 lua require('statusline')
 lua require('treesitter')
+lua require('snippets')
 lua require('hop').setup()
 lua require('Comment').setup()
 lua require('fzf-lua').setup({})
