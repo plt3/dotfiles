@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+
+# Small script to display elapsed time until stopped with ctrl + c
+
+import time
+
+PRECISION = 2
+
+
+def timeToString(timeNum):
+    """Return nicely-formatted string from time as seconds elapsed"""
+
+    hours = timeNum // 3600
+    timeNum %= 3600
+    minutes = timeNum // 60
+    timeNum %= 60
+
+    if minutes or hours:
+        secString = str(round(timeNum, PRECISION))
+        if "." not in secString:
+            secString += ".00"
+        secString = secString.rjust(3 + PRECISION, "0")
+        if hours:
+            minString = str(int(minutes)).rjust(2, "0")
+            return f"{int(hours)}:{minString}:{secString}"
+        else:
+            return f"{int(minutes)}:{secString}"
+    else:
+        return f"{round(timeNum, 2)}"
+
+
+def displayTimer():
+    """Run infinite loop updating elapsed time"""
+
+    start = time.time()
+    newTime = start
+
+    while True:
+        try:
+            newTime = time.time() - start
+            print(f"\r{timeToString(newTime)}", end="", flush=True)
+            time.sleep(0.01)
+        except KeyboardInterrupt:
+            print(f"\r{timeToString(newTime)}  ")
+            break
+
+
+if __name__ == "__main__":
+    displayTimer()
