@@ -182,10 +182,10 @@ let g:VimuxLastCommand = "make && ./a.out"
 nnoremap <silent> <leader>vp :silent wall <bar> VimuxPromptCommand<CR>
 " because my weird .inputrc makes VimuxClearTerminalScreen not work
 nnoremap <silent> <leader>vc :call VimuxSendKeys("ii")<CR>
-nnoremap <silent> <leader>vk :VimuxCloseRunner<CR>
+nnoremap <silent> <leader>vs :VimuxCloseRunner<CR>
 nnoremap <silent> <leader>vi :VimuxInspectRunner<CR>
 nnoremap <silent> <leader>vz :VimuxZoomRunner<CR>
-nnoremap <silent> <leader>vs :VimuxInterruptRunner<CR>
+nnoremap <silent> <leader>vk :VimuxInterruptRunner<CR>
 nnoremap <silent> <C-s> :silent wall <bar> VimuxRunLastCommand<CR>
 
 " vimspector remaps
