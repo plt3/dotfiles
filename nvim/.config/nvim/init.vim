@@ -199,7 +199,7 @@ fun! AddToWatch()
   call vimspector#AddWatch(word)
 endfun
 
-nnoremap <leader>m :MaximizerToggle!<CR>
+nnoremap <leader>mt :MaximizerToggle!<CR>
 nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
 nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
 nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>

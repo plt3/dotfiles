@@ -15,22 +15,20 @@ def timeToString(timeNum: float) -> str:
     minutes = timeNum // 60
     timeNum %= 60
 
+    secString = ("{:." + str(PRECISION) + "f}").format(timeNum)
+
     if minutes or hours:
-        secString = str(round(timeNum, PRECISION))
-        if "." not in secString:
-            secString += ".00"
-        if timeNum < 10:
-            secString = "0" + secString
+        secString = secString.rjust(PRECISION + 3, "0")
         if hours:
             minString = str(int(minutes)).rjust(2, "0")
             return f"{int(hours)}:{minString}:{secString}"
         else:
             return f"{int(minutes)}:{secString}"
     else:
-        return f"{round(timeNum, 2)}"
+        return secString
 
 
-def displayTimer():
+def displayStopwatch():
     """Run infinite loop updating elapsed time"""
 
     start = time.time()
@@ -47,4 +45,4 @@ def displayTimer():
 
 
 if __name__ == "__main__":
-    displayTimer()
+    displayStopwatch()
