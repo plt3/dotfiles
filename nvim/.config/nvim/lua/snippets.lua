@@ -9,7 +9,7 @@ local rep = require("luasnip.extras").rep
 local t = ls.text_node
 local f = ls.function_node
 
-ls.config.set_config{updateevents = "TextChanged,TextChangedI"}
+ls.config.set_config{updateevents = "TextChanged,TextChangedI", store_selection_keys = "<Tab>"}
 
 -- load friendly-snippets
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -83,5 +83,6 @@ ls.snippets = {
     s("javascript", fmt("```javascript\n{}\n```", {i(0)})),
     s("java", fmt("```java\n{}\n```", {i(0)})),
     s("new", fmt("## {}:\n\n\n", {partial(os.date, "%-m/%-d/%y")})),
+    s("link", fmt("[{}]({})", {i(1), i(2)})),
   },
 }

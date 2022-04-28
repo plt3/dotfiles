@@ -190,8 +190,8 @@ nnoremap <silent> <C-s> :silent wall <bar> VimuxRunLastCommand<CR>
 
 " vimspector remaps
 fun! GotoWindow(id)
-    call win_gotoid(a:id)
-    MaximizerToggle
+  call win_gotoid(a:id)
+  MaximizerToggle
 endfun
 
 fun! AddToWatch()
@@ -219,7 +219,19 @@ nmap <leader>di <Plug>VimspectorBalloonEval
 nnoremap <leader>dw :call AddToWatch()<CR>
 
 " Git remaps (Fugitive, Diffview)
-nnoremap <silent> <leader>gs :G<CR>
+function! s:ToggleGstatus() abort
+  for l:winnr in range(1, winnr('$'))
+    if !empty(getwinvar(l:winnr, 'fugitive_status'))
+      execute l:winnr.'close'
+    else
+      Git
+    endif
+  endfor
+endfunction
+
+nnoremap <silent> <leader>gs :call <SID>ToggleGstatus()<CR>
+nnoremap <silent> <leader>gl :G log<CR>
+nnoremap <silent> <leader>gp :G push<CR>
 " use the diffget remaps when running Gvdiffsplit!
 nnoremap <silent> <leader>gu :diffget //2<CR>
 nnoremap <silent> <leader>gh :diffget //3<CR>
