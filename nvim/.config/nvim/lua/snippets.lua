@@ -76,6 +76,7 @@ ls.snippets = {
     s("ex", fmta("\\begin{exercise}{<>}\n\t<>\n\\end{exercise}", {i(1, "number"), i(0)})),
     s("frac", fmta("\\frac{<>}{<>}<>", {i(1), i(2), i(0)})),
     s("cyc", fmt("\\langle {} \\rangle{}", {i(1), i(0)})),
+    s("ilmat", fmta("\\begin{bmatrix}<>\\end{bmatrix}", {i(1)})),
   },
   vimwiki = {
     s("python", fmt("```python\n{}\n```", {i(0)})),
