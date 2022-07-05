@@ -13,7 +13,7 @@ ls.config.set_config{updateevents = "TextChanged,TextChangedI", store_selection_
 
 -- load friendly-snippets
 require("luasnip.loaders.from_vscode").lazy_load()
-ls.filetype_extend("all", { "global" })
+-- ls.filetype_extend("all", { "global" })
 
 function defArgs(nodes)
   local funcArgs = nodes[1][1]
@@ -44,11 +44,7 @@ function defArgs(nodes)
   end
 end
 
-ls.snippets = {
-  all = {
-    s("date", partial(os.date, "%-m/%-d/%y")),
-    s("time", partial(os.date, "%H:%M:%S")),
-  },
+ls.add_snippets(nil, {
   python = {
     s(
       "func",
@@ -83,7 +79,8 @@ ls.snippets = {
     s("cpp", fmt("```cpp\n{}\n```", {i(0)})),
     s("javascript", fmt("```javascript\n{}\n```", {i(0)})),
     s("java", fmt("```java\n{}\n```", {i(0)})),
+    s("go", fmt("```go\n{}\n```", {i(0)})),
     s("new", fmt("## {}:\n\n\n", {partial(os.date, "%-m/%-d/%y")})),
     s("link", fmt("[{}]({})", {i(1), i(2)})),
   },
-}
+})

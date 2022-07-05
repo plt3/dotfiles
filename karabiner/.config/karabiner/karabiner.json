@@ -198,16 +198,50 @@
             "manipulators": [
               {
                 "from": {
-                  "key_code": "escape",
-                  "modifiers": {
-                    "mandatory": [
-                      "shift"
-                    ]
+                  "simultaneous": [
+                    {
+                      "key_code": "left_shift"
+                    },
+                    {
+                      "key_code": "escape"
+                    }
+                  ],
+                  "simultaneous_options": {
+                    "key_up_when": "all"
                   }
                 },
-                "to": [
+                "to_after_key_up": [
                   {
-                    "shell_command": "pmset sleepnow"
+                    "key_code": "power",
+                    "modifiers": [
+                      "left_control",
+                      "left_shift"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "simultaneous": [
+                    {
+                      "key_code": "right_shift"
+                    },
+                    {
+                      "key_code": "escape"
+                    }
+                  ],
+                  "simultaneous_options": {
+                    "key_up_when": "all"
+                  }
+                },
+                "to_after_key_up": [
+                  {
+                    "key_code": "power",
+                    "modifiers": [
+                      "left_control",
+                      "left_shift"
+                    ]
                   }
                 ],
                 "type": "basic"

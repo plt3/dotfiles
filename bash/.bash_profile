@@ -17,7 +17,7 @@ PROMPT_DIRTRIM=2
 
 # aliases
 alias gs="git status"
-alias go="git log --all --decorate --oneline --graph"
+alias gl="git log --all --decorate --oneline --graph"
 alias gb="git branch"
 alias gd="git diff"
 alias gdc="git diff --cached"
