@@ -9,6 +9,7 @@ open -a "Notes"
 open -a "Finder"
 open -a "iTerm"
 open -a "Brave Browser"
+open -a "Flycut"
 
 sleep 10
 

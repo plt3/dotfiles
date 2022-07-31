@@ -276,6 +276,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'sindrets/diffview.nvim'
 Plug 'tpope/vim-fugitive'
+Plug 'danymat/neogen'
 
 " nvim-cmp
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -302,6 +303,7 @@ lua require('Comment').setup()
 lua require('fzf-lua').setup({})
 lua require('neoclip').setup()
 lua require('diffview').setup({use_icons = false})
+lua require('neogen').setup({ snippet_engine = "luasnip" })
 
 " use custom vimspector launch function to handle Java as well as other languages
 nnoremap <silent> <leader>dd :lua startVimspector()<CR>
