@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+
+# script to create random markdown file for test email attachments
+
+import linecache
+import random
+
+WORDS_FILE = "/usr/share/dict/words"
+OUTPUT_PATH = "/Users/pault/Desktop/"
+NUM_LINES = 235886
+
+lineNum = random.randint(0, NUM_LINES - 1)
+chosenWord = linecache.getline(WORDS_FILE, lineNum).strip()
+
+with open(f"{OUTPUT_PATH}{chosenWord}.md", "w") as f:
+    f.write(f"# {chosenWord} file\n\n")
+    f.write(
+        "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim"
+        " sint cillum sint consectetur cupidatat.\n"
+    )
+
+print(f"{chosenWord}.md")

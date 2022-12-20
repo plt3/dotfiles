@@ -290,7 +290,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 call plug#end()
 
 set background=dark
-colorscheme tokyonight
+colorscheme tokyonight-night
 
 lua require('lsp')
 lua require('completion')

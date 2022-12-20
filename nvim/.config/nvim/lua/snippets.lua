@@ -73,6 +73,10 @@ ls.add_snippets(nil, {
     s("frac", fmta("\\frac{<>}{<>}<>", {i(1), i(2), i(0)})),
     s("cyc", fmt("\\langle {} \\rangle{}", {i(1), i(0)})),
     s("ilmat", fmta("\\begin{bmatrix}<>\\end{bmatrix}", {i(1)})),
+    s("proof", fmta("\\begin{proof}\n\t<>\n\\end{proof}", {i(1)})),
+    s("*", t("\\cdot")),
+    s("nin", t("$n \\in \\N$")),
+    s("lim", fmta("\\displaystyle\\lim_{<>}", {i(1, "n \\to \\infty")})),
   },
   vimwiki = {
     s("python", fmt("```python\n{}\n```", {i(0)})),

@@ -13,7 +13,7 @@ if [ -n "$1" ] && [ "$1" = "--from-nvim" ]; then
     yabai -m window $skimId --toggle zoom-fullscreen
     yabai -m window $skimId --toggle zoom-fullscreen
 else
-    cd ~/Desktop/Georgetown/assignments/MATH-215/
+    # cd ~/Desktop/Georgetown/assignments/MATH-215/
 
     lastHwNum=$(ls Paul_Taylor_homework_*.tex | tail -n 1 | grep -o "\d")
     newHwNum=$((lastHwNum + 1))
