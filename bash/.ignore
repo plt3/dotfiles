@@ -1,0 +1,7 @@
+# files that ripgrep should ignore, also ignore by fzf (since it uses rg --files)
+
+.git
+node_modules
+venv
+__pycache__
+.DS_Store
