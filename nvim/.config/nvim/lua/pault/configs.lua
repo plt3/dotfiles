@@ -76,3 +76,12 @@ require('pault.treesitter')
 nmap('<leader>gd', ':DiffviewOpen', { noremap = true })
 nmap('<leader>gdc', ':DiffviewOpen<CR>')
 nmap('<leader>gc', ':DiffviewClose<CR>')
+
+-- lsp configuration
+require('pault.lsp')
+
+-- nvim-cmp configuration
+require('pault.completion')
+
+-- luasnip configuration
+require('pault.snippets')

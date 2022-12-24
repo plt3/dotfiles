@@ -32,6 +32,9 @@ require('telescope').setup {
     }
 }
 
+-- load telescope-fzf-native
+require('telescope').load_extension('fzf')
+
 nmap('<leader>f', require('telescope.builtin').find_files)
 nmap('<leader>h', require('telescope.builtin').git_files)
 -- to project-wide fuzzy search, search for one letter and then
