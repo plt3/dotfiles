@@ -1,5 +1,6 @@
 local lsp = require("lsp-zero")
 local mason_nullls = require("mason-null-ls")
+local nmap = require("pault.utils").normalmap
 
 -- 'recommended' wasn't letting me setup nvim-cmp how I wanted (see completion.lua)
 lsp.preset("lsp-compe")
@@ -22,6 +23,10 @@ lsp.configure("clangd", {
 
 lsp.nvim_workspace()
 lsp.setup()
+
+-- override some lsp-zero keymaps
+nmap("<leader>a", vim.lsp.buf.code_action)
+nmap("<leader>n", vim.lsp.buf.rename)
 
 vim.diagnostic.config({
 	virtual_text = true,

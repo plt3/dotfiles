@@ -31,3 +31,13 @@ vim.cmd([[command! -nargs=+ Grep :silent grep <args>]])
 
 vim.g.markdown_fenced_languages =
 	{ "sql", "python", "sh", "html", "css", "javascript", "dockerfile", "yaml", "json", "vim", "cpp" }
+
+-- highlight on yank
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank({ higroup = "Visual", on_visual = false })
+	end,
+	group = highlight_group,
+	pattern = "*",
+})

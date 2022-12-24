@@ -87,3 +87,6 @@ require("pault.completion")
 
 -- luasnip configuration
 require("pault.snippets")
+
+-- lsp_signature configuration
+require("lsp_signature").setup()

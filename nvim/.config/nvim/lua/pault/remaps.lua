@@ -6,9 +6,12 @@ end
 
 nmap("mm", ":w<CR>")
 -- to copy/paste to/from system clipboard
-nmap("<leader>y", '"+y')
+vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
 nmap("<leader>Y", '"+y$')
-nmap("<leader>p", '"+p')
+vim.keymap.set({ "n", "x" }, "<leader>p", '"+p')
+nmap("<leader>P", '"+P$')
+-- paste over visual selection without losing register content
+vim.keymap.set("x", "<leader>d", '"_dP')
 -- easier way to switch to alternate buffer
 nmap("<leader>c", "<C-^>")
 -- insert blank lines above/below current line
