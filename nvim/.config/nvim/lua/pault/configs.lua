@@ -88,5 +88,12 @@ require("pault.completion")
 -- luasnip configuration
 require("pault.snippets")
 
+-- formatting configuration
+-- NOTE: must be called after pault.lsp due to mason stuff (same with dap)
+require("pault.formatting")
+
+-- debugging configuration
+require("pault.dap")
+
 -- lsp_signature configuration
 require("lsp_signature").setup()
