@@ -21,6 +21,8 @@ vim.o.signcolumn = "yes"
 vim.o.colorcolumn = "89"
 vim.o.textwidth = 88
 vim.o.formatoptions = "jcrql"
+vim.o.lbr = true
+vim.o.cursorline = true
 
 vim.g.mapleader = " "
 
@@ -33,11 +35,25 @@ vim.g.markdown_fenced_languages =
 	{ "sql", "python", "sh", "html", "css", "javascript", "dockerfile", "yaml", "json", "vim", "cpp" }
 
 -- highlight on yank
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+local yankHiGroup = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank({ higroup = "Visual", on_visual = false })
 	end,
-	group = highlight_group,
+	group = yankHiGroup,
+	pattern = "*",
+})
+
+-- show cursorline in everything but insert mode
+local cursorLineHiGroup = vim.api.nvim_create_augroup("CursorLineHighlight", { clear = true })
+vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter", "InsertEnter", "WinLeave" }, {
+	callback = function(opts)
+		if opts.event == "InsertLeave" or opts.event == "WinEnter" then
+			vim.o.cursorline = true
+		else
+			vim.o.cursorline = false
+		end
+	end,
+	group = cursorLineHiGroup,
 	pattern = "*",
 })

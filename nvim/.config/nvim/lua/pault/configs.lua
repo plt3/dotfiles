@@ -1,4 +1,5 @@
 local nmap = require("pault.utils").normalMap
+local toggle = require("pault.utils").toggleWindow
 
 -- tokyonight configuration
 vim.cmd([[colorscheme tokyonight-night]])
@@ -11,48 +12,56 @@ vim.g.tmux_navigator_save_on_switch = 2
 nmap("<leader>mt", ":MaximizerToggle!<CR>")
 
 -- vim-fugitive configuration
-local function gitStatusToggle()
-	local winId = nil
-	for _, win in pairs(vim.fn.getwininfo()) do
-		if win.variables.fugitive_status ~= nil then
-			winId = win.winid
-		end
-	end
-	if winId ~= nil then
-		vim.api.nvim_win_close(winId, false)
-	else
-		vim.cmd("Git")
-	end
-end
-
-nmap("<leader>gs", gitStatusToggle)
-nmap("<leader>gl", ":Git log<CR>")
+nmap("<leader>gs", function()
+	toggle("fugitive", "Git")
+end)
+nmap("<leader>gl", function()
+	toggle("git", "Git log")
+end)
 nmap("<leader>gp", ":Git push<CR>")
 -- use these remaps when running Gvdiffsplit!
 nmap("<leader>gu", ":diffget //2<CR>")
 nmap("<leader>gh", ":diffget //3<CR>")
 
 -- vimwiki configuration
+local vimwikiGroup = vim.api.nvim_create_augroup("VimwikiGroup", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function()
+		nmap("j", "gj", { buffer = true })
+		nmap("k", "gk", { buffer = true })
+		nmap("gj", "j", { buffer = true })
+		nmap("gk", "k", { buffer = true })
+		vim.o.wrap = true
+		vim.o.colorcolumn = ""
+	end,
+	group = vimwikiGroup,
+	pattern = "vimwiki",
+})
 -- this was setting markdown filetype as vimwiki
 vim.g.vimwiki_global_ext = 0
 -- this was interfering with UltiSnips trigger TODO delete?
 vim.g.vimwiki_table_mappings = 0
 vim.g.vimwiki_conceal_pre = 1
 vim.g.vimwiki_markdown_link_ext = 1
--- this was interfering with my <leader>w mapping TODO delete?
 vim.g.vimwiki_key_mappings = { global = 0 }
 vim.g.vimwiki_list = { { path = "~/vimwiki/", syntax = "markdown", ext = ".md" } }
--- TODO: figure out why this doesn't need to be recursive?
 nmap("<leader><leader>w", "<Plug>VimwikiIndex")
 nmap("<leader><leader>t", "<Plug>VimwikiTabIndex")
+nmap("_", "<Plug>VimwikiRemoveHeaderLevel")
+nmap("<leader><leader>&", "<Plug>VimwikiNextLink")
 
--- vimtex configuration TODO translate from vimscript
+-- vimtex configuration
 vim.g.vimtex_view_method = "skim"
 vim.g.vimtex_quickfix_mode = 0
-vim.cmd([[autocmd FileType tex nnoremap <buffer> <leader>tc :VimtexCompile<CR>]])
-vim.cmd(
-	[[autocmd FileType tex nnoremap <buffer> <silent> <leader>tl :VimtexClean<CR> <bar> :silent !rm *.synctex.gz<CR>]]
-)
+local vimtexGroup = vim.api.nvim_create_augroup("VimtexGroup", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function()
+		nmap("<leader>tc", ":VimtexCompile<CR>", { buffer = true })
+		nmap("<leader>tl", ":VimtexClean<CR> <bar> :silent !rm *.synctex.gz<CR>", { buffer = true, silent = true })
+	end,
+	group = vimtexGroup,
+	pattern = "tex",
+})
 
 -- vimux configuration
 vim.g.VimuxOrientation = "h"

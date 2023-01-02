@@ -1,16 +1,9 @@
 local nmap = require("pault.utils").normalMap
+local toggle = require("pault.utils").toggleWindow
 
-local function quickfixToggle()
-	for _, win in pairs(vim.fn.getwininfo()) do
-		if win.quickfix == 1 then
-			vim.cmd.cclose()
-			return
-		end
-	end
-	vim.cmd.copen()
-end
-
-nmap("mm", ":w<CR>")
+nmap("mm", ":write<CR>")
+-- write all buffers
+nmap("<leader>w", ":wall<CR>")
 -- to copy/paste to/from system clipboard
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
 nmap("<leader>Y", '"+y$')
@@ -24,9 +17,11 @@ nmap("<leader>c", "<C-^>")
 nmap("<leader>k", "O<ESC>j^")
 nmap("<leader>j", "o<ESC>k^")
 -- quickfix navigation
-nmap("<C-n>", ":cnext<CR>")
-nmap("<C-p>", ":cprev<CR>")
-nmap("<leader>q", quickfixToggle)
+nmap("<C-o>", ":cprev<CR>")
+nmap("<C-t>", ":cnext<CR>")
+nmap("<leader>q", function()
+	toggle("qf", "copen")
+end)
 -- be able to repeat indents on visual selections
 vim.keymap.set("x", "<", "<gv")
 vim.keymap.set("x", ">", ">gv")
