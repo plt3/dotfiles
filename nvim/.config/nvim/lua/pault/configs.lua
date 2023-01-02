@@ -1,4 +1,4 @@
-local nmap = require("pault.utils").normalmap
+local nmap = require("pault.utils").normalMap
 
 -- tokyonight configuration
 vim.cmd([[colorscheme tokyonight-night]])
@@ -10,8 +10,22 @@ vim.g.tmux_navigator_save_on_switch = 2
 -- vim-maximizer configuration
 nmap("<leader>mt", ":MaximizerToggle!<CR>")
 
--- vim-fugitive configuration TODO toggle function
-nmap("<leader>gs", ":Git<CR>")
+-- vim-fugitive configuration
+local function gitStatusToggle()
+	local winId = nil
+	for _, win in pairs(vim.fn.getwininfo()) do
+		if win.variables.fugitive_status ~= nil then
+			winId = win.winid
+		end
+	end
+	if winId ~= nil then
+		vim.api.nvim_win_close(winId, false)
+	else
+		vim.cmd("Git")
+	end
+end
+
+nmap("<leader>gs", gitStatusToggle)
 nmap("<leader>gl", ":Git log<CR>")
 nmap("<leader>gp", ":Git push<CR>")
 -- use these remaps when running Gvdiffsplit!
@@ -57,9 +71,7 @@ nmap("<C-s>", ":silent wall <bar> VimuxRunLastCommand<CR>")
 require("pault.telescope")
 
 -- hop configuration
--- TODO: experiment with these keys
--- TODO: also try putting setup in packer.use.config as in hop readme?
-require("hop").setup({ keys = "ahotenusi-d" })
+require("hop").setup()
 nmap("-", ":HopWord<CR>")
 
 -- comment configuration

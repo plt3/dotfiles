@@ -1,8 +1,12 @@
 local lsp = require("lsp-zero")
-local nmap = require("pault.utils").normalmap
+local nmap = require("pault.utils").normalMap
 
 -- 'recommended' wasn't letting me setup nvim-cmp how I wanted (see completion.lua)
 lsp.preset("lsp-compe")
+
+lsp.set_preferences({
+	set_lsp_keymaps = false,
+})
 
 lsp.ensure_installed({
 	"pyright",
@@ -20,12 +24,25 @@ lsp.configure("clangd", {
 	capabilities = capabilities,
 })
 
+-- choose my own keymaps
+lsp.on_attach(function(client, bufnr)
+	local opts = { noremap = true, silent = true, buffer = bufnr }
+
+	nmap("K", vim.lsp.buf.hover, opts)
+	nmap("gd", vim.lsp.buf.definition, opts)
+	nmap("gD", vim.lsp.buf.declaration, opts)
+	nmap("gi", vim.lsp.buf.implementation, opts)
+	nmap("go", vim.lsp.buf.type_definition, opts)
+	nmap("gr", vim.lsp.buf.references, opts)
+	nmap("<leader>n", vim.lsp.buf.rename, opts)
+	nmap("<leader>a", vim.lsp.buf.code_action, opts)
+	nmap("gl", vim.diagnostic.open_float, opts)
+	nmap("[d", vim.diagnostic.goto_prev, opts)
+	nmap("]d", vim.diagnostic.goto_next, opts)
+end)
+
 lsp.nvim_workspace()
 lsp.setup()
-
--- override some lsp-zero keymaps
-nmap("<leader>a", vim.lsp.buf.code_action)
-nmap("<leader>n", vim.lsp.buf.rename)
 
 vim.diagnostic.config({
 	virtual_text = true,

@@ -1,7 +1,8 @@
 local mason_dap = require("mason-nvim-dap")
 local dap = require("dap")
 local dapui = require("dapui")
-local nmap = require("pault.utils").normalmap
+local nmap = require("pault.utils").normalMap
+local nrepmap = require("pault.utils").normalRepeatableMap
 
 mason_dap.setup({
 	ensure_installed = { "python", "codelldb", "delve" },
@@ -95,13 +96,14 @@ dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open()
 end
 
+-- debugging remaps
 nmap("<leader>d<space>", dap.continue)
-nmap("<leader>db", dap.toggle_breakpoint)
-nmap("<leader>dj", dap.step_over)
+nrepmap("<leader>db", dap.toggle_breakpoint)
+nrepmap("<leader>dj", dap.step_over)
 nmap("<leader>dk", dap.step_out)
 nmap("<leader>dl", dap.step_into)
-nmap("<leader>dc", dap.run_to_cursor)
-nmap("<leader>d_", dap.run_last)
+nrepmap("<leader>dc", dap.run_to_cursor)
+nmap("<leader>d_", dap.run_last) -- restart debugging
 nmap("<leader>de", function()
 	dap.terminate()
 	dapui.close()

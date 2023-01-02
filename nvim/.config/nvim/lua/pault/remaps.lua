@@ -1,7 +1,13 @@
-local nmap = require("pault.utils").normalmap
+local nmap = require("pault.utils").normalMap
 
-function quickfixToggle()
-	print("TODO: this function")
+local function quickfixToggle()
+	for _, win in pairs(vim.fn.getwininfo()) do
+		if win.quickfix == 1 then
+			vim.cmd.cclose()
+			return
+		end
+	end
+	vim.cmd.copen()
 end
 
 nmap("mm", ":w<CR>")

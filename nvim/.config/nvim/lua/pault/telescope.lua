@@ -1,4 +1,4 @@
-local nmap = require("pault.utils").normalmap
+local nmap = require("pault.utils").normalMap
 
 require("telescope").setup({
 	defaults = {
