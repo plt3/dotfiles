@@ -26,7 +26,7 @@ lsp.configure("clangd", {
 
 -- choose my own keymaps
 lsp.on_attach(function(client, bufnr)
-	local opts = { noremap = true, silent = true, buffer = bufnr }
+	local opts = { silent = true, buffer = bufnr }
 
 	nmap("K", vim.lsp.buf.hover, opts)
 	nmap("gd", vim.lsp.buf.definition, opts)

@@ -2,7 +2,7 @@ local M = {}
 
 -- make a normal mode remap
 function M.normalMap(binding, command, opts)
-	opts = opts or { noremap = true, silent = true }
+	opts = opts or { silent = true }
 	vim.keymap.set("n", binding, command, opts)
 end
 

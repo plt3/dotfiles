@@ -33,6 +33,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		nmap("gk", "k", { buffer = true })
 		vim.o.wrap = true
 		vim.o.colorcolumn = ""
+		-- no idea why but luasnip tab expansion won't work in vimwiki files,
+		-- so use ctrl + c to expand
+		vim.keymap.set("i", "<C-c>", require("luasnip").expand_or_jump, { buffer = true })
 	end,
 	group = vimwikiGroup,
 	pattern = "vimwiki",
@@ -96,7 +99,7 @@ require("lualine").setup()
 require("pault.treesitter")
 
 -- diffview configuration
-nmap("<leader>gd", ":DiffviewOpen", { noremap = true })
+nmap("<leader>gd", ":DiffviewOpen")
 nmap("<leader>gdc", ":DiffviewOpen<CR>")
 nmap("<leader>gc", ":DiffviewClose<CR>")
 
