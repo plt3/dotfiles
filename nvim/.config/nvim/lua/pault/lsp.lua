@@ -24,8 +24,10 @@ lsp.configure("clangd", {
 	capabilities = capabilities,
 })
 
--- choose my own keymaps
-lsp.on_attach(function(client, bufnr)
+-- don't let lsp-zero configure jdtls, leave that to nvim-jdtls
+lsp.skip_server_setup("jdtls")
+
+local function onAttach(client, bufnr)
 	local opts = { silent = true, buffer = bufnr }
 
 	nmap("K", vim.lsp.buf.hover, opts)
@@ -39,11 +41,37 @@ lsp.on_attach(function(client, bufnr)
 	nmap("gl", vim.diagnostic.open_float, opts)
 	nmap("<C-p>", vim.diagnostic.goto_prev, opts)
 	nmap("<C-n>", vim.diagnostic.goto_next, opts)
-end)
+end
+
+-- choose my own keymaps
+lsp.on_attach(onAttach)
 
 lsp.nvim_workspace()
 lsp.setup()
 
 vim.diagnostic.config({
 	virtual_text = true,
+})
+
+-- start jdtls with nvim-jdtls
+local javaGroup = vim.api.nvim_create_augroup("JavaGroup", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function()
+		local jdtlsConfig = {
+			cmd = { vim.fn.expand("$HOME/.local/share/nvim/mason/bin/jdtls") },
+			root_dir = vim.fs.dirname(vim.fs.find({ ".gradlew", ".git", "mvnw" }, { upward = true })[1]),
+			on_attach = onAttach,
+			init_options = {
+				bundles = {
+					vim.fn.glob(
+						"~/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar",
+						1
+					),
+				},
+			},
+		}
+		require("jdtls").start_or_attach(jdtlsConfig)
+	end,
+	group = javaGroup,
+	pattern = "java",
 })

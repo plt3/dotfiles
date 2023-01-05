@@ -3,14 +3,15 @@ local dap = require("dap")
 local dapui = require("dapui")
 local nmap = require("pault.utils").normalMap
 local nrepmap = require("pault.utils").normalRepeatableMap
+local jdtls = require("jdtls")
 
 mason_dap.setup({
-	ensure_installed = { "python", "codelldb", "delve" },
+	ensure_installed = { "python", "codelldb", "delve", "javadbg" },
 	automatic_setup = true,
 })
 
 -- TODO: figure out if I actually need mason-nvim-dap at this point?
-require("mason-nvim-dap").setup_handlers({
+mason_dap.setup_handlers({
 	function(source_name)
 		-- all sources with no handler get passed here
 		-- Keep original functionality of `automatic_setup = true`
@@ -98,11 +99,18 @@ end
 
 -- debugging remaps
 nmap("<leader>d<space>", dap.continue)
+-- must run this before debugging a java file
+nmap("<leader>dd", function()
+	jdtls.setup_dap()
+	require("jdtls.dap").setup_dap_main_class_configs()
+	print("Java DAP initialization complete")
+end)
 nrepmap("<leader>db", dap.toggle_breakpoint)
 nrepmap("<leader>dj", dap.step_over)
 nmap("<leader>dk", dap.step_out)
 nmap("<leader>dl", dap.step_into)
 nrepmap("<leader>dc", dap.run_to_cursor)
+nmap("<leader>di", require("dap.ui.widgets").hover)
 nmap("<leader>d_", dap.run_last) -- restart debugging
 nmap("<leader>de", function()
 	dap.terminate()
