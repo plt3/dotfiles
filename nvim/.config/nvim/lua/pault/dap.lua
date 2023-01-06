@@ -10,7 +10,6 @@ mason_dap.setup({
 	automatic_setup = true,
 })
 
--- TODO: figure out if I actually need mason-nvim-dap at this point?
 mason_dap.setup_handlers({
 	function(source_name)
 		-- all sources with no handler get passed here

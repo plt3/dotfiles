@@ -17,7 +17,7 @@ nmap("<leader>c", "<C-^>")
 nmap("<leader>k", "O<ESC>j^")
 nmap("<leader>j", "o<ESC>k^")
 -- quickfix navigation
-nmap("<C-m>", ":cprev<CR>")
+nmap("<C-c>", ":cprev<CR>")
 nmap("<C-t>", ":cnext<CR>")
 nmap("<leader>q", function()
 	toggle("qf", "copen")

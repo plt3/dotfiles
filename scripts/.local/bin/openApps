@@ -16,6 +16,3 @@ sleep 10
 say "restarting yuh bye"
 
 launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
-
-# TODO: tile space 1 windows correctly using yabai
-# can also use something like yabai -m rule --add app="Calendar" space=3

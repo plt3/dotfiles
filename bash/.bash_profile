@@ -3,13 +3,12 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # set some homebrew environment variables
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-export EDITOR="nvim -u ~/.config/nvim/manInit.vim"
+export EDITOR="nvim"
+# view man pages in nvim
+export MANPAGER="nvim +Man!"
 
 # I guess I want this? cscp breaks without it due to glob excluding files
 shopt -s extglob
-
-# view man pages in nvim with light config file
-export MANPAGER="/bin/sh -c \"col -b | nvim -u ~/.config/nvim/manInit.vim -c 'set ft=man ts=8 nomod nolist noma' -\""
 
 # customize prompt
 PS1="\[$(tput bold)\]\[\033[38;5;196m\]\u\[$(tput sgr0)\] \[$(tput bold)\]@\[$(tput sgr0)\] \[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;82m\]\h\[$(tput sgr0)\] \w\[$(tput sgr0)\] > "
