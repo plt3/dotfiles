@@ -2,7 +2,7 @@ local mason_nullls = require("mason-null-ls")
 
 -- setup formatters with null-ls
 mason_nullls.setup({
-	ensure_installed = { "stylua", "jq", "black", "isort", "clang_format", "gofumpt" },
+	ensure_installed = { "stylua", "jq", "black", "isort", "clang_format", "gofumpt", "shfmt" },
 	automatic_setup = true,
 })
 

@@ -212,11 +212,7 @@
                 },
                 "to_after_key_up": [
                   {
-                    "key_code": "power",
-                    "modifiers": [
-                      "left_control",
-                      "left_shift"
-                    ]
+                    "shell_command": "osascript -e 'tell app \"System Events\" to sleep'"
                   }
                 ],
                 "type": "basic"
@@ -237,11 +233,7 @@
                 },
                 "to_after_key_up": [
                   {
-                    "key_code": "power",
-                    "modifiers": [
-                      "left_control",
-                      "left_shift"
-                    ]
+                    "shell_command": "osascript -e 'tell app \"System Events\" to sleep'"
                   }
                 ],
                 "type": "basic"
@@ -724,7 +716,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/Users/pault/.config/yabai/switchDisplay.sh"
+                    "shell_command": "~/.config/yabai/switchDisplay.sh"
                   }
                 ],
                 "type": "basic"
@@ -742,7 +734,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "/Users/pault/.config/yabai/swapWindows.sh"
+                    "shell_command": "~/.config/yabai/swapWindows.sh"
                   }
                 ],
                 "type": "basic"
