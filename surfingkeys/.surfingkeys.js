@@ -15,12 +15,8 @@ function mapKey(fromKey, toKey, mapBothWays = false) {
   }
 }
 
-// disable (at least partially) on some sites
-api.unmapAllExcept(["E", "R"], /mail.google.com|cstimer.net/);
-api.unmap("j", /duckduckgo.com/);
-api.unmap("k", /duckduckgo.com/);
-
 settings.defaultSearchEngine = "d";
+settings.modeAfterYank = "Normal";
 api.Hints.setCharacters("aoeuidhtns");
 
 api.Visual.style("marks", "background-color: #A3BE8C99;");
@@ -41,6 +37,7 @@ mapKey("L", "D");
 // open generic omnibar (and t to open new tab)
 mapKey("O", "t");
 mapKey("t", "on");
+mapKey("gm", "om"); // open vim-like marks
 mapKey("o", "go");
 // paste URL from clipboard
 api.mapkey("p", "Open the clipboard's URL in the current tab", function () {
@@ -67,6 +64,11 @@ api.mapkey("gh", "Open the clipboard's GitHub URL", function () {
     }
   });
 });
+
+// disable (at least partially) on some sites
+api.unmapAllExcept(["J", "K"], /mail.google.com|cstimer.net/);
+api.unmap("j", /duckduckgo.com/);
+api.unmap("k", /duckduckgo.com/);
 
 settings.theme = `
 :root {

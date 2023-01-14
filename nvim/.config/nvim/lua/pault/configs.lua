@@ -33,25 +33,27 @@ vim.api.nvim_create_autocmd("FileType", {
 		nmap("gk", "k", { buffer = true })
 		vim.o.wrap = true
 		vim.o.colorcolumn = ""
-		-- no idea why but luasnip tab expansion won't work in vimwiki files,
-		-- so use ctrl + c to expand
-		vim.keymap.set("i", "<C-c>", require("luasnip").expand_or_jump, { buffer = true })
+		vim.o.textwidth = 0
 	end,
 	group = vimwikiGroup,
 	pattern = "vimwiki",
 })
 -- this was setting markdown filetype as vimwiki
 vim.g.vimwiki_global_ext = 0
--- this was interfering with UltiSnips trigger TODO delete?
-vim.g.vimwiki_table_mappings = 0
 vim.g.vimwiki_conceal_pre = 1
 vim.g.vimwiki_markdown_link_ext = 1
-vim.g.vimwiki_key_mappings = { global = 0 }
-vim.g.vimwiki_list = { { path = "~/vimwiki/", syntax = "markdown", ext = ".md" } }
+-- disabling table mappings allows Tab to expand snippets
+vim.g.vimwiki_key_mappings = { global = 0, table_mappings = 0 }
+vim.g.vimwiki_list = {
+	{
+		path = "~/Library/Mobile Documents/com~apple~CloudDocs/vimwiki/",
+		syntax = "markdown",
+		ext = ".md",
+	},
+}
 nmap("<leader><leader>w", "<Plug>VimwikiIndex")
 nmap("<leader><leader>t", "<Plug>VimwikiTabIndex")
 nmap("_", "<Plug>VimwikiRemoveHeaderLevel")
-nmap("<leader><leader>&", "<Plug>VimwikiNextLink")
 
 -- vimtex configuration
 vim.g.vimtex_view_method = "skim"
@@ -121,3 +123,7 @@ require("pault.dap")
 
 -- lsp_signature configuration
 require("lsp_signature").setup()
+--
+-- nvim-tree configuration
+require("nvim-tree").setup()
+nmap("<leader>s", ":NvimTreeFindFileToggle<CR>")

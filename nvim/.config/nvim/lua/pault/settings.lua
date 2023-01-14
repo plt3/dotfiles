@@ -31,6 +31,10 @@ vim.o.grepprg = "rg --vimgrep --no-heading --smart-case --hidden"
 vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 vim.cmd([[command! -nargs=+ Grep :silent grep <args>]])
 
+-- disable netrw to use nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.g.markdown_fenced_languages =
 	{ "sql", "python", "sh", "html", "css", "javascript", "dockerfile", "yaml", "json", "vim", "cpp" }
 

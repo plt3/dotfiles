@@ -22,6 +22,7 @@ require("packer").startup(function(use)
 	use("nvim-tree/nvim-web-devicons")
 	use("lewis6991/impatient.nvim")
 	use("nvim-lualine/lualine.nvim")
+	use("nvim-tree/nvim-tree.lua")
 	use({
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.0",
