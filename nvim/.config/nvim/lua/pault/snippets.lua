@@ -33,7 +33,7 @@ luasnip.add_snippets(nil, {
 -- snippet expansion/navigation remaps (because configuring them in nvim-cmp was too hard)
 vim.keymap.set("i", "<Tab>", function()
 	return luasnip.expand_or_jumpable() and "<Plug>luasnip-expand-or-jump" or "<Tab>"
-end, { silent = true, expr = true, remap = true })
+end, { silent = true, expr = true })
 vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
 	luasnip.jump(-1)
 end, { silent = true })
@@ -42,4 +42,4 @@ vim.keymap.set("s", "<Tab>", function()
 end, { silent = true })
 vim.keymap.set({ "i", "s" }, "<C-E>", function()
 	return luasnip.choice_active() and "<Plug>luasnip-next-choice" or "<C-E>"
-end, { silent = true, expr = true, remap = true })
+end, { silent = true, expr = true })

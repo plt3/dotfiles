@@ -64,6 +64,16 @@ api.mapkey("gh", "Open the clipboard's GitHub URL", function () {
     }
   });
 });
+api.mapkey(
+  "go",
+  "Open DuckDuckGo search result with Google",
+  function () {
+    const params = new URLSearchParams(window.location.search);
+    params.set("q", params.get("q") + " !g");
+    window.location.search = params.toString();
+  },
+  { domain: /duckduckgo\.com/i }
+);
 
 // disable (at least partially) on some sites
 api.unmapAllExcept(["J", "K"], /mail.google.com|cstimer.net/);

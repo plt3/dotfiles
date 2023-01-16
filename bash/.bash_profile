@@ -27,9 +27,9 @@ alias ip="ifconfig | grep 'inet ' | grep -v 127.0.0.1 | cut -d ' ' -f 2 | tr -d 
 alias tt="python3 ~/scripts/typingTest/typingTest.py"
 alias n="nvim"
 alias cat="bat -H 0:"
-alias ls="exa"
-alias ll="exa -lahg --color-scale"
-alias lt='exa -aT -I "venv|*.pyc|__pycache__|.git|.DS_Store|node_modules"'
+alias ls="lsd"
+alias ll="lsd --long --almost-all --total-size --header"
+alias lt='lsd --tree --all -I ".git" -I ".DS_Store" -I "venv" -I "*.pyc" -I "__pycache__" -I "node_modules"'
 alias notify="osascript -e 'display notification \"The command finished!\"'; afplay /System/Library/Sounds/Blow.aiff -v 5"
 alias dockertog="if docker ps &> /dev/null; then echo \"quitting Docker...\"; osascript -e 'quit app \"Docker\"'; else echo \"starting Docker...\"; open -a Docker; fi"
 alias drmf='docker rm -f $(docker ps -q | head -n 1)'
@@ -49,9 +49,9 @@ alias runquiz="pbpaste > tmpfile.cpp && g++ -std=c++11 -o paste.out tmpfile.cpp;
 source ~/.bashrc
 
 # create directory and cd into it
-mk () {
-    mkdir "$1"
-    cd "$1"
+mk() {
+	mkdir "$1"
+	cd "$1"
 }
 
 export PTPYTHON_CONFIG_HOME="/Users/pault/.config/ptpython"

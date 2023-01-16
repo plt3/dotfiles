@@ -29,7 +29,7 @@ vim.g.mapleader = " "
 -- use ripgrep for grep and default to silent grep
 vim.o.grepprg = "rg --vimgrep --no-heading --smart-case --hidden"
 vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
-vim.cmd([[command! -nargs=+ Grep :silent grep <args>]])
+vim.api.nvim_create_user_command("Grep", ":silent grep <args>", { nargs = "+" })
 
 -- disable netrw to use nvim-tree
 vim.g.loaded_netrw = 1
