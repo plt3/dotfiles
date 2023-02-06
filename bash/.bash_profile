@@ -38,9 +38,11 @@ alias drm='docker rm -f $(docker ps -q)'
 alias drma='docker rm -f $(docker ps -qa)'
 alias drmi="docker images | grep '\<none\>' | awk '{ print \$3; }' | xargs docker rmi"
 alias dps="docker ps"
-alias iv="cd ~/.config/nvim; nvim init.vim; cd - > /dev/null"
+alias iv="nvim ~/dotfiles/nvim/.config/nvim/init.lua"
 alias pf="~/scripts/pipFreezePrune/outputDeps.sh"
 alias memleak="top -pid $(pgrep a.out)"
+# restart icloud drive upload when it hangs
+alias drive="killall bird"
 
 # delete after this semester?
 alias cssh="ssh plt15@class-1.cs.georgetown.edu"
@@ -61,3 +63,6 @@ export PYTHONSTARTUP="/Users/pault/.pythonrc.py"
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 # not sure why this doesn't already get sourced by the line above but make ssh completion work
 . /opt/homebrew/Cellar/bash-completion@2/2.11/share/bash-completion/completions/ssh
+
+# initialize zoxide
+eval "$(zoxide init bash)"

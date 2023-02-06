@@ -39,8 +39,8 @@ local function onAttach(client, bufnr)
 	nmap("<leader>n", vim.lsp.buf.rename, opts)
 	nmap("<leader>a", vim.lsp.buf.code_action, opts)
 	nmap("gl", vim.diagnostic.open_float, opts)
-	nmap("<C-p>", vim.diagnostic.goto_prev, opts)
-	nmap("<C-n>", vim.diagnostic.goto_next, opts)
+	nmap("<C-c>", vim.diagnostic.goto_prev, opts)
+	nmap("<C-t>", vim.diagnostic.goto_next, opts)
 end
 
 -- choose my own keymaps
@@ -58,7 +58,11 @@ local javaGroup = vim.api.nvim_create_augroup("JavaGroup", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		local jdtlsConfig = {
-			cmd = { vim.fn.expand("$HOME/.local/share/nvim/mason/bin/jdtls") },
+			cmd = {
+				vim.fn.expand("$HOME/.local/share/nvim/mason/bin/jdtls"),
+				"-data", -- didn't have to specify this before but for some reason this is necessary now?
+				vim.fn.expand("$HOME/.cache/jdtls/workspace"),
+			},
 			root_dir = vim.fs.dirname(vim.fs.find({ ".gradlew", ".git", "mvnw" }, { upward = true })[1]),
 			on_attach = onAttach,
 			init_options = {

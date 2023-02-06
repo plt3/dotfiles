@@ -46,7 +46,8 @@ nmap("<leader>h", function()
 		teleBuiltin.find_files()
 	end
 end)
--- to project-wide fuzzy search, search for one letter and then
--- <C-f> to filter through results TODO find better solution for this
-nmap("<leader>r", teleBuiltin.live_grep)
 nmap("<leader>b", teleBuiltin.buffers)
+-- project-wide fuzzy search
+nmap("<leader>r", function()
+	teleBuiltin.grep_string({ search = "" })
+end)

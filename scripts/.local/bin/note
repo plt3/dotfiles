@@ -3,7 +3,7 @@
 # this script opens up neovim with (hopefully) the correct note I want to edit.
 # invoke it with note subject or just note to get to the index page.
 
-wikiDir="$HOME/Library/Mobile Documents/com~apple~CloudDocs/vimwiki/"
+wikiDir="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/vimwiki/"
 
 if [ $1 ]; then
 	cd "$wikiDir"
@@ -25,13 +25,13 @@ if [ $1 ]; then
 		if [ -n "$TMUX" ]; then
 			tmux rename-window "notes"
 		fi
-		nvim "$wikiDir"index.md
+		nvim "$wikiDir"other/TODO.md
 	fi
 else
 	if [ -n "$TMUX" ]; then
 		tmux rename-window "notes"
 	fi
-	nvim "$wikiDir"index.md
+	nvim "$wikiDir"other/TODO.md
 fi
 
 # if in tmux, make sure that the window automatically renames itself after this script

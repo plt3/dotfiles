@@ -6,7 +6,5 @@ set editing-mode vi
 set keymap vi-insert
 # ii in insert mode clears the window and stays in insert mode
 "ii": "\e\C-la"
-# alt-n enters cs class host name
-"\en": "plt15@class-1.cs.georgetown.edu:/home/plt15/"
 # alt-v enters path to vimwiki directory
-"\ev": "~/Library/Mobile\\ Documents/com~apple~CloudDocs/vimwiki/"
+"\ev": "~/Library/Mobile\\ Documents/iCloud~md~obsidian/Documents/vimwiki/"

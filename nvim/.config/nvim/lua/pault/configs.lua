@@ -46,9 +46,10 @@ vim.g.vimwiki_markdown_link_ext = 1
 vim.g.vimwiki_key_mappings = { global = 0, table_mappings = 0 }
 vim.g.vimwiki_list = {
 	{
-		path = "~/Library/Mobile Documents/com~apple~CloudDocs/vimwiki/",
+		path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vimwiki/",
 		syntax = "markdown",
 		ext = ".md",
+		listsyms = " .oOx",
 	},
 }
 nmap("<leader><leader>w", "<Plug>VimwikiIndex")

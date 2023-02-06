@@ -76,9 +76,12 @@ api.mapkey(
 );
 
 // disable (at least partially) on some sites
-api.unmapAllExcept(["J", "K"], /mail.google.com|cstimer.net/);
+api.unmapAllExcept(["J", "K", "o", "O"], /mail.google.com|cstimer.net/);
+api.unmapAllExcept(["J", "K", "o", "O"], /mail.google.com|cstimer.net/);
+api.unmapAllExcept([], /localhost:888|bubble.io/);
 api.unmap("j", /duckduckgo.com/);
 api.unmap("k", /duckduckgo.com/);
+api.unmap("0", /youtube.com/);
 
 settings.theme = `
 :root {
