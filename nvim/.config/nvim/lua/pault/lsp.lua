@@ -14,7 +14,7 @@ lsp.ensure_installed({
 	"clangd",
 	"gopls",
 	"jdtls",
-	"sumneko_lua",
+	"lua_ls",
 })
 
 -- silence weird warning about multiple offset_encodings due to clangd + null-ls

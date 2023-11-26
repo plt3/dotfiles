@@ -4,9 +4,8 @@ local mason_nullls = require("mason-null-ls")
 mason_nullls.setup({
 	ensure_installed = { "stylua", "jq", "black", "isort", "clang_format", "gofumpt", "shfmt" },
 	automatic_setup = true,
+	handlers = {},
 })
-
-mason_nullls.setup_handlers({})
 
 -- format with null-ls on save
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})

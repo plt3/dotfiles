@@ -2,7 +2,7 @@ local nmap = require("pault.utils").normalMap
 local toggle = require("pault.utils").toggleWindow
 
 -- tokyonight configuration
-vim.cmd([[colorscheme tokyonight-night]])
+vim.cmd.colorscheme("tokyonight-night")
 
 -- vim-tmux-navigator configuration
 -- Write all buffers before navigating from Vim to tmux pane
@@ -73,6 +73,15 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.g.VimuxOrientation = "h"
 vim.g.VimuxHeight = "45"
 vim.g.VimuxLastCommand = "make && ./a.out"
+-- if nvim is opened with a python file, automatically set VimuxLastCommand
+local vimuxGroup = vim.api.nvim_create_augroup("VimuxGroup", { clear = true })
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		vim.g.VimuxLastCommand = "python3 " .. vim.api.nvim_buf_get_name(0)
+	end,
+	group = vimuxGroup,
+	pattern = "*.py",
+})
 nmap("<leader>vp", ":silent wall <bar> VimuxPromptCommand<CR>")
 -- because my weird .inputrc makes VimuxClearTerminalScreen not work
 nmap("<leader>vc", ':call VimuxSendKeys("ii")<CR>')
@@ -94,6 +103,12 @@ require("Comment").setup()
 
 -- neoscroll configuration
 require("neoscroll").setup({ mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "zt", "zz", "zb" } })
+
+-- indent-blankline configuration
+require("ibl").setup({
+	indent = { char = "▏" },
+	scope = { enabled = false },
+})
 
 -- lualine configuration
 require("lualine").setup()
@@ -124,7 +139,19 @@ require("pault.dap")
 
 -- lsp_signature configuration
 require("lsp_signature").setup()
---
+
 -- nvim-tree configuration
 require("nvim-tree").setup()
 nmap("<leader>s", ":NvimTreeFindFileToggle<CR>")
+
+-- deugprint setup
+require("debugprint").setup({
+	filetypes = {
+		["python"] = {
+			left = 'print(f"',
+			right = '")',
+			mid_var = "{",
+			right_var = '}")',
+		},
+	},
+})

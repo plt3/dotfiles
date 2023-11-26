@@ -20,15 +20,16 @@ alias gl="git log --all --decorate --oneline --graph"
 alias gb="git branch"
 alias gd="git diff"
 alias gdc="git diff --cached"
-alias ve="python3 -m venv venv; source venv/bin/activate; pip3 install --upgrade pip; pip3 install ptpython"
+alias ve="python3 -m venv venv; source venv/bin/activate; pip3 install --upgrade pip"
 alias ac="source venv/bin/activate"
 alias de="deactivate"
 alias ip="ifconfig | grep 'inet ' | grep -v 127.0.0.1 | cut -d ' ' -f 2 | tr -d '\n' | pbcopy && pbpaste && echo"
 alias tt="python3 ~/scripts/typingTest/typingTest.py"
+alias ta="tmux attach"
 alias n="nvim"
 alias cat="bat -H 0:"
 alias ls="lsd"
-alias ll="lsd --long --almost-all --total-size --header"
+alias ll="lsd --long --almost-all --header"
 alias lt='lsd --tree --all -I ".git" -I ".DS_Store" -I "venv" -I "*.pyc" -I "__pycache__" -I "node_modules"'
 alias notify="osascript -e 'display notification \"The command finished!\"'; afplay /System/Library/Sounds/Blow.aiff -v 5"
 alias dockertog="if docker ps &> /dev/null; then echo \"quitting Docker...\"; osascript -e 'quit app \"Docker\"'; else echo \"starting Docker...\"; open -a Docker; fi"
@@ -41,12 +42,9 @@ alias dps="docker ps"
 alias iv="nvim ~/dotfiles/nvim/.config/nvim/init.lua"
 alias pf="~/scripts/pipFreezePrune/outputDeps.sh"
 alias memleak="top -pid $(pgrep a.out)"
+alias yt-dlp="yt-dlp -f mp4 -o \"%(title)s.%(ext)s\""
 # restart icloud drive upload when it hangs
 alias drive="killall bird"
-
-# delete after this semester?
-alias cssh="ssh plt15@class-1.cs.georgetown.edu"
-alias runquiz="pbpaste > tmpfile.cpp && g++ -std=c++11 -o paste.out tmpfile.cpp; ./paste.out; rm tmpfile.cpp paste.out"
 
 source ~/.bashrc
 

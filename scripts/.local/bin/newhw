@@ -6,31 +6,31 @@
 
 # --from-nvim option should never be used! It is only called from the script itself
 if [ -n "$1" ] && [ "$1" = "--from-nvim" ]; then
-    sleep 2
-    skimId=$(yabai -m query --windows --space | jq '.[] | select(.app == "Skim") | .id')
-    yabai -m window $skimId --display 2
-    # toggle fullscreen zoom twice to make it take up full screen for some reason
-    yabai -m window $skimId --toggle zoom-fullscreen
-    yabai -m window $skimId --toggle zoom-fullscreen
+	sleep 2
+	skimId=$(yabai -m query --windows --space | jq '.[] | select(.app == "Skim") | .id')
+	yabai -m window $skimId --display 2
+	# toggle fullscreen zoom twice to make it take up full screen for some reason
+	yabai -m window $skimId --toggle zoom-fullscreen
+	yabai -m window $skimId --toggle zoom-fullscreen
 else
-    # cd ~/Desktop/Georgetown/assignments/MATH-215/
+	# cd ~/Desktop/Georgetown/assignments/MATH-215/
 
-    lastHwNum=$(ls Paul_Taylor_homework_*.tex | tail -n 1 | grep -o "\d")
-    newHwNum=$((lastHwNum + 1))
-    newHwFile="Paul_Taylor_homework_$newHwNum.tex"
+	lastHwNum=$(ls Paul_Taylor_homework_*.tex | tail -n 1 | grep -o "\d")
+	newHwNum=$((lastHwNum + 1))
+	newHwFile="Paul_Taylor_homework_$newHwNum.tex"
 
-    # create new file with incremented hw number and change relevant lines in it
-    cp -n hw_skeleton.tex $newHwFile
-    sed -i '' "s/Homework 1/Homework $newHwNum/" $newHwFile
-    sed -i '' "s/DATE_HERE/$(date '+%B %-d, %Y')/" $newHwFile
+	# create new file with incremented hw number and change relevant lines in it
+	cp -n hw_skeleton.tex $newHwFile
+	sed -i '' "s/Homework 1/Homework $newHwNum/" $newHwFile
+	sed -i '' "s/DATE_HERE/$(date '+%B %-d, %Y')/" $newHwFile
 
-    # send Skim window to second display unless -n option is passed
-    if [ -n "$1" ] && [ "$1" = "-n" ]; then
-        nvim +70 -c "VimtexCompile" $newHwFile
-    else
-        # this calls this very script from nvim with the --from-nvim option to make it
-        # only run the yabai commands to move the Skim window to the next display.
-        # Having a shell script call itself seems like a pretty bad idea but it works
-        nvim +70 -c "VimtexCompile" -c "silent !$0 --from-nvim" $newHwFile
-    fi
+	# send Skim window to second display unless -n option is passed
+	if [ -n "$1" ] && [ "$1" = "-n" ]; then
+		nvim +70 -c "VimtexCompile" $newHwFile
+	else
+		# this calls this very script from nvim with the --from-nvim option to make it
+		# only run the yabai commands to move the Skim window to the next display.
+		# Having a shell script call itself seems like a pretty bad idea but it works
+		nvim +70 -c "VimtexCompile" -c "silent !$0 --from-nvim" $newHwFile
+	fi
 fi

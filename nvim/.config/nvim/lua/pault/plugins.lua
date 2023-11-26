@@ -22,10 +22,11 @@ require("packer").startup(function(use)
 	use("nvim-tree/nvim-web-devicons")
 	use("lewis6991/impatient.nvim")
 	use("nvim-lualine/lualine.nvim")
+	use("hiphish/rainbow-delimiters.nvim")
 	use("nvim-tree/nvim-tree.lua")
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.0",
+		tag = "0.1.4",
 		requires = "nvim-lua/plenary.nvim",
 	})
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
@@ -35,7 +36,6 @@ require("packer").startup(function(use)
 			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
 		end,
 	})
-	use("p00f/nvim-ts-rainbow")
 	use("lukas-reineke/indent-blankline.nvim")
 	use({
 		"VonHeikemen/lsp-zero.nvim",
@@ -66,4 +66,5 @@ require("packer").startup(function(use)
 	use("rcarriga/nvim-dap-ui")
 	use("jay-babu/mason-nvim-dap.nvim")
 	use("mfussenegger/nvim-jdtls")
+	use("andrewferrier/debugprint.nvim")
 end)

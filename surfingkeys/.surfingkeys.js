@@ -78,7 +78,10 @@ api.mapkey(
 // disable (at least partially) on some sites
 api.unmapAllExcept(["J", "K", "o", "O"], /mail.google.com|cstimer.net/);
 api.unmapAllExcept(["J", "K", "o", "O"], /mail.google.com|cstimer.net/);
-api.unmapAllExcept([], /localhost:888|bubble.io/);
+api.unmapAllExcept(
+  [],
+  /localhost|https:\/\/bubble.io|coderbyte.com|docs.google.com|NBARedZone|bestsolaris.com/
+);
 api.unmap("j", /duckduckgo.com/);
 api.unmap("k", /duckduckgo.com/);
 api.unmap("0", /youtube.com/);
