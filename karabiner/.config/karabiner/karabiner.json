@@ -716,7 +716,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "~/.config/yabai/switchDisplay.sh"
+                    "shell_command": "/opt/homebrew/bin/yabai -m display --focus recent"
                   }
                 ],
                 "type": "basic"
