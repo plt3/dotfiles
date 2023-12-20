@@ -57,7 +57,7 @@ api.mapkey("gh", "Open the clipboard's GitHub URL", function () {
     ) {
       window.location.href = `https://github.com/${url.slice(
         1,
-        url.length - 1
+        url.length - 1,
       )}`;
     } else {
       window.location.href = `https://github.com/${url}`;
@@ -72,7 +72,7 @@ api.mapkey(
     params.set("q", params.get("q") + " !g");
     window.location.search = params.toString();
   },
-  { domain: /duckduckgo\.com/i }
+  { domain: /duckduckgo\.com/i },
 );
 
 // disable (at least partially) on some sites
@@ -80,7 +80,7 @@ api.unmapAllExcept(["J", "K", "o", "O"], /mail.google.com|cstimer.net/);
 api.unmapAllExcept(["J", "K", "o", "O"], /mail.google.com|cstimer.net/);
 api.unmapAllExcept(
   [],
-  /localhost|https:\/\/bubble.io|coderbyte.com|docs.google.com|NBARedZone|bestsolaris.com/
+  /localhost|https:\/\/bubble.io|coderbyte.com|docs.google.com|bestsolaris.com|127.0.0.1|nbaredzone.applikuapp.com|nbaredzone.onrender.com/,
 );
 api.unmap("j", /duckduckgo.com/);
 api.unmap("k", /duckduckgo.com/);

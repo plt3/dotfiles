@@ -6,26 +6,31 @@
 wikiDir="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/vimwiki/"
 
 if [ $1 ]; then
-	cd "$wikiDir"
-	# this passes all the files tracked by git and with the query into fzf
-	wantedFile=$(rg --files | rg -i $1 | fzf -i -1 -0 -q $1)
-	if [ $wantedFile ]; then
-		# if inside tmux, rename window to something descriptive
-		if [ -n "$TMUX" ]; then
-			paneTitle=$(basename -s .md $wantedFile | xargs basename -s _notes | tr "_" " ")
-			if [ "$paneTitle" = "index" ]; then
-				tmux rename-window "notes"
-			else
-				tmux rename-window "$paneTitle notes"
-			fi
-		fi
-		wantedPath="$wikiDir"$wantedFile
-		nvim "$wantedPath"
+	# open today's note with note today
+	if [ "$1" = "today" ]; then
+		nvim +ObsidianToday
 	else
-		if [ -n "$TMUX" ]; then
-			tmux rename-window "notes"
+		cd "$wikiDir"
+		# this passes all the files tracked by git and with the query into fzf
+		wantedFile=$(rg --files | rg -i $1 | fzf -i -1 -0 -q $1)
+		if [ $wantedFile ]; then
+			# if inside tmux, rename window to something descriptive
+			if [ -n "$TMUX" ]; then
+				paneTitle=$(basename -s .md $wantedFile | xargs basename -s _notes | tr "_" " ")
+				if [ "$paneTitle" = "index" ]; then
+					tmux rename-window "notes"
+				else
+					tmux rename-window "$paneTitle notes"
+				fi
+			fi
+			wantedPath="$wikiDir"$wantedFile
+			nvim "$wantedPath"
+		else
+			if [ -n "$TMUX" ]; then
+				tmux rename-window "notes"
+			fi
+			nvim "$wikiDir"other/TODO.md
 		fi
-		nvim "$wikiDir"other/TODO.md
 	fi
 else
 	if [ -n "$TMUX" ]; then

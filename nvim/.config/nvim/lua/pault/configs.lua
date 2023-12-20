@@ -11,6 +11,9 @@ vim.g.tmux_navigator_save_on_switch = 2
 -- vim-maximizer configuration
 nmap("<leader>mt", ":MaximizerToggle!<CR>")
 
+-- bullets.vim configuration
+vim.g.bullets_outline_levels = {}
+
 -- vim-fugitive configuration
 nmap("<leader>gs", function()
 	toggle("fugitive", "Git")
@@ -22,39 +25,6 @@ nmap("<leader>gp", ":Git push<CR>")
 -- use these remaps when running Gvdiffsplit!
 nmap("<leader>gu", ":diffget //2<CR>")
 nmap("<leader>gh", ":diffget //3<CR>")
-
--- vimwiki configuration
-local vimwikiGroup = vim.api.nvim_create_augroup("VimwikiGroup", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-	callback = function()
-		nmap("j", "gj", { buffer = true })
-		nmap("k", "gk", { buffer = true })
-		nmap("gj", "j", { buffer = true })
-		nmap("gk", "k", { buffer = true })
-		vim.o.wrap = true
-		vim.o.colorcolumn = ""
-		vim.o.textwidth = 0
-	end,
-	group = vimwikiGroup,
-	pattern = "vimwiki",
-})
--- this was setting markdown filetype as vimwiki
-vim.g.vimwiki_global_ext = 0
-vim.g.vimwiki_conceal_pre = 1
-vim.g.vimwiki_markdown_link_ext = 1
--- disabling table mappings allows Tab to expand snippets
-vim.g.vimwiki_key_mappings = { global = 0, table_mappings = 0 }
-vim.g.vimwiki_list = {
-	{
-		path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/vimwiki/",
-		syntax = "markdown",
-		ext = ".md",
-		listsyms = " .oOx",
-	},
-}
-nmap("<leader><leader>w", "<Plug>VimwikiIndex")
-nmap("<leader><leader>t", "<Plug>VimwikiTabIndex")
-nmap("_", "<Plug>VimwikiRemoveHeaderLevel")
 
 -- vimtex configuration
 vim.g.vimtex_view_method = "skim"
@@ -155,3 +125,6 @@ require("debugprint").setup({
 		},
 	},
 })
+
+-- obsidian.nvim configuration
+require("pault.obsidian")

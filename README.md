@@ -24,7 +24,7 @@
 
 ### Tmux:
 
-- convenient searching in scrollback buffer with ctrl + /
+- convenient searching in scrollback buffer with `ctrl+/`
 - jump to any word in visible part of scrollback buffer with tmux-jump
 - copy text in scrollback buffer to clipboard with tmux-yank
 - save tmux sessions with tmux-resurrect
@@ -32,7 +32,7 @@
 ### Karabiner-Elements:
 
 - caps lock to escape if pressed alone, control if pressed with another key
-- ctrl + w deletes previous word everywhere like in Vim
+- `ctrl+w` deletes previous word everywhere like in Vim
 - left/right shift moves forward/backward by one word
 - yabai keybinds
 - type letters with accents by pressing vowel + t/n/s as a chord
@@ -45,20 +45,21 @@
 
 ### Notetaking:
 
-- using vimwiki and Neovim
+- using Neovim with obsidian.nvim
 - synced via iCloud Drive to Obsidian app on phone
 - launched via `note` script
 - automatically backed up daily to private GitHub repository using launchd (code not in this repository)
 
 ### Scripts:
 
-- `note`: open vimwiki note with command-line argument, use fzf to search if multiple matches
+- `note`: open note with command-line argument, use fzf to search if multiple matches
   - automatically rename tmux window to name of note
-- `stopwatch`: Python stopwatch utility to be stopped with ctrl+c
+  - `note today` opens daily note
+- `stopwatch`: Python stopwatch utility to be stopped with `ctrl+c`
 
 ### Vim:
 
-- portable, single-file vimrc to have nice defaults when working on a remote machine
+- portable, single-file .vimrc to have nice defaults when working on a remote machine
 
 ### Surfingkeys:
 

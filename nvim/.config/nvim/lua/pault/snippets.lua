@@ -20,13 +20,12 @@ luasnip.add_snippets(nil, {
 		s("nin", t("$n \\in \\N$")),
 		s("lim", fmta("\\displaystyle\\lim_{<>}", { i(1, "n \\to \\infty") })),
 	},
-	vimwiki = {
+	markdown = {
 		s(
 			"code",
 			fmt("```{}\n{}\n```", { c(1, { t("python"), t("cpp"), t("java"), t("javascript"), t("go") }), i(0) })
 		),
 		s("new", fmt("## {}:\n\n\n", { partial(os.date, "%-m/%-d/%y") })),
-		s("link", fmt("[{}]({})", { i(1), i(2) })),
 	},
 })
 

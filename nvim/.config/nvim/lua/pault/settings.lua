@@ -23,6 +23,7 @@ vim.o.textwidth = 88
 vim.o.formatoptions = "jcrql"
 vim.o.lbr = true
 vim.o.cursorline = true
+vim.o.conceallevel = 1
 
 vim.g.mapleader = " "
 
