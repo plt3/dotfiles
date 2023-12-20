@@ -16,6 +16,7 @@
 
 yabai -m rule --add app="^System Settings$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Reminders$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Notes$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Dictionary$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Karabiner-Elements$" sticky=on layer=above manage=off
