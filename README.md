@@ -56,6 +56,7 @@
   - automatically rename tmux window to name of note
   - `note today` opens daily note
 - `stopwatch`: Python stopwatch utility to be stopped with `ctrl+c`
+- `multiplex`: open and tile minimal browser windows for last 4 URLs in clipboard (for watching multiple streams at once)
 
 ### Vim:
 

@@ -5,7 +5,9 @@
 	editor = nvim
 [credential]
 	helper = osxkeychain
-	useHttpPath = true
+	# set to true if I want to differentiate between gh accounts (will ask for PAT when
+	# cloning repo for first time if set to true)
+	useHttpPath = false
 [pull]
 	ff = only
 [init]

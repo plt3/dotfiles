@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Take up to last 4 URLs copied to clipboard and display them all in minimal browser
+# windows on same desktop space. Mainly for watching multiple NBA streams at once when
+# https://github.com/plt3/NBARedZone isn't working. Highly recommended to assign to
+# a keyboard shortcut via Karabiner-Elements
+#
+# NOTE: requires yabai to tile windows, Brave to open URLs (should be able to adapt for
+# any Chromium browser though), and Maccy to get clipboard history (can adapt to read
+# URLs from text file, etc. if don't want to use Maccy)
+
+label="multiplex_rule"
+numDisplays=$(yabai -m query --displays | jq length)
+
+# only run this if using multiple displays
+if [[ "$numDisplays" -gt 1 ]]; then
+	current_space=$(yabai -m query --spaces --space | jq '.index')
+	# make yabai move all windows to current desktop space after opening them
+	yabai -m signal --add label="$label" event=window_created action="yabai -m window \$YABAI_WINDOW_ID --space $current_space"
+fi
+
+# get up to last 4 clipboard entries from Maccy (stopping at first entry that does not
+# start with http) and open them all in minimal Brave windows
+# (see https://github.com/p0deje/Maccy/issues/383)
+sql="SELECT
+  ZVALUE
+FROM
+  ZHISTORYITEM
+  LEFT JOIN ZHISTORYITEMCONTENT ON ZHISTORYITEM.Z_PK = ZHISTORYITEMCONTENT.ZITEM
+WHERE
+  ZTYPE = 'public.utf8-plain-text'
+ORDER BY
+  ZHISTORYITEM.Z_PK DESC
+LIMIT
+  4"
+sqlite3 ~/Library/Containers/org.p0deje.Maccy/Data/Library/Application\ Support/Maccy/Storage.sqlite \
+	"$sql" |
+	sed -n '/^http/!q;p' |
+	xargs -I % open -a "Brave Browser.app" -n --args --new-window --app="%"
+
+if [[ "$numDisplays" -gt 1 ]]; then
+	# remove yabai signal after all windows have been opened
+	sleep 10
+	yabai -m signal --remove "$label"
+fi

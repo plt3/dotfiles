@@ -280,7 +280,7 @@
             ]
           },
           {
-            "description": "open Apple Notes with shift + command + m",
+            "description": "run multiplex script with shift + command + m",
             "manipulators": [
               {
                 "from": {
@@ -294,7 +294,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "osascript ~/scripts/openAppleNotes.scpt"
+                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin; ~/.local/bin/multiplex"
                   }
                 ],
                 "type": "basic"
@@ -1473,8 +1473,8 @@
           "identifiers": {
             "is_keyboard": true,
             "is_pointing_device": false,
-            "product_id": 20492,
-            "vendor_id": 12815
+            "product_id": 28694,
+            "vendor_id": 3141
           },
           "ignore": false,
           "manipulate_caps_lock_led": true,
