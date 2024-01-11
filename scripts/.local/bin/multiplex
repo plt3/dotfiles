@@ -8,6 +8,10 @@
 # NOTE: requires yabai to tile windows, Brave to open URLs (should be able to adapt for
 # any Chromium browser though), and Maccy to get clipboard history (can adapt to read
 # URLs from text file, etc. if don't want to use Maccy)
+#
+# Also recommended to use a browser extension to maximize a video within a window, like
+# https://chromewebstore.google.com/detail/fullscreen-anything/olcfgpmjldkkjdclidhcbonieibfhhdh
+# to avoid having to zoom each video manually
 
 label="multiplex_rule"
 numDisplays=$(yabai -m query --displays | jq length)

@@ -71,4 +71,13 @@ require("packer").startup(function(use)
 		"epwalsh/obsidian.nvim",
 		tag = "*",
 	})
+	use({
+		"kndndrj/nvim-dbee",
+		requires = {
+			"MunifTanjim/nui.nvim",
+		},
+		run = function()
+			require("dbee").install()
+		end,
+	})
 end)
