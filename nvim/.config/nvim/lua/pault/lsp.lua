@@ -1,20 +1,32 @@
 local lsp = require("lsp-zero")
 local nmap = require("pault.utils").normalMap
 
+-- mason.nvim/lspconfig setup
+require("mason").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"pyright",
+		"tsserver",
+		"clangd",
+		"gopls",
+		"jdtls",
+		"lua_ls",
+	},
+	handlers = {
+		lsp.default_setup,
+		lua_ls = function()
+			local lua_opts = lsp.nvim_lua_ls()
+			require("lspconfig").lua_ls.setup(lua_opts)
+		end,
+		jdtls = lsp.noop,
+	},
+})
+
 -- 'recommended' wasn't letting me setup nvim-cmp how I wanted (see completion.lua)
 lsp.preset("lsp-compe")
 
 lsp.set_preferences({
 	set_lsp_keymaps = false,
-})
-
-lsp.ensure_installed({
-	"pyright",
-	"tsserver",
-	"clangd",
-	"gopls",
-	"jdtls",
-	"lua_ls",
 })
 
 -- silence weird warning about multiple offset_encodings due to clangd + null-ls
@@ -23,9 +35,6 @@ capabilities.offsetEncoding = "utf-8"
 lsp.configure("clangd", {
 	capabilities = capabilities,
 })
-
--- don't let lsp-zero configure jdtls, leave that to nvim-jdtls
-lsp.skip_server_setup("jdtls")
 
 local function onAttach(client, bufnr)
 	local opts = { silent = true, buffer = bufnr }
@@ -46,7 +55,6 @@ end
 -- choose my own keymaps
 lsp.on_attach(onAttach)
 
-lsp.nvim_workspace()
 lsp.setup()
 
 vim.diagnostic.config({

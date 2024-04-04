@@ -1,45 +1,55 @@
-require("packer").startup(function(use)
-	use("wbthomason/packer.nvim")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
 
-	use("tpope/vim-sleuth")
-	use("tpope/vim-surround")
-	use("tpope/vim-repeat")
-	use("romainl/vim-cool")
-	use("tpope/vim-fugitive")
-	use("szw/vim-maximizer")
-	use("dkarter/bullets.vim")
-	use("jiangmiao/auto-pairs")
-	use("unblevable/quick-scope")
-	use("airblade/vim-rooter")
-	use("lervag/vimtex")
-	use("christoomey/vim-tmux-navigator")
-	use("preservim/vimux")
-	use("numToStr/Comment.nvim")
-	use("phaazon/hop.nvim")
-	use("karb94/neoscroll.nvim")
-	use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
-	use("folke/tokyonight.nvim")
-	use("nvim-tree/nvim-web-devicons")
-	use("lewis6991/impatient.nvim")
-	use("nvim-lualine/lualine.nvim")
-	use("hiphish/rainbow-delimiters.nvim")
-	use("nvim-tree/nvim-tree.lua")
-	use({
+require("lazy").setup({
+	"tpope/vim-sleuth",
+	"tpope/vim-surround",
+	"tpope/vim-repeat",
+	"romainl/vim-cool",
+	"tpope/vim-fugitive",
+	"szw/vim-maximizer",
+	"dkarter/bullets.vim",
+	"jiangmiao/auto-pairs",
+	"unblevable/quick-scope",
+	"airblade/vim-rooter",
+	"lervag/vimtex",
+	"christoomey/vim-tmux-navigator",
+	"preservim/vimux",
+	"numToStr/Comment.nvim",
+	"phaazon/hop.nvim",
+	"karb94/neoscroll.nvim",
+	{ "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim" },
+	"folke/tokyonight.nvim",
+	"nvim-tree/nvim-web-devicons",
+	"nvim-lualine/lualine.nvim",
+	"hiphish/rainbow-delimiters.nvim",
+	"nvim-tree/nvim-tree.lua",
+	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.4",
-		requires = "nvim-lua/plenary.nvim",
-	})
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-	use({
+		dependencies = "nvim-lua/plenary.nvim",
+	},
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	{
 		"nvim-treesitter/nvim-treesitter",
-		run = function()
+		build = function()
 			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
 		end,
-	})
-	use("lukas-reineke/indent-blankline.nvim")
-	use({
+	},
+	"lukas-reineke/indent-blankline.nvim",
+	{
 		"VonHeikemen/lsp-zero.nvim",
-		requires = {
+		dependencies = {
 			-- LSP Support
 			{ "neovim/nvim-lspconfig" },
 			{ "williamboman/mason.nvim" },
@@ -58,26 +68,27 @@ require("packer").startup(function(use)
 			{ "L3MON4D3/LuaSnip" },
 			{ "rafamadriz/friendly-snippets" },
 		},
-	})
-	use("ray-x/lsp_signature.nvim")
-	use("jose-elias-alvarez/null-ls.nvim")
-	use("jay-babu/mason-null-ls.nvim")
-	use("mfussenegger/nvim-dap")
-	use("rcarriga/nvim-dap-ui")
-	use("jay-babu/mason-nvim-dap.nvim")
-	use("mfussenegger/nvim-jdtls")
-	use("andrewferrier/debugprint.nvim")
-	use({
+	},
+	"ray-x/lsp_signature.nvim",
+	"jose-elias-alvarez/null-ls.nvim",
+	"jay-babu/mason-null-ls.nvim",
+	"mfussenegger/nvim-dap",
+	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+	"jay-babu/mason-nvim-dap.nvim",
+	"mfussenegger/nvim-jdtls",
+	"andrewferrier/debugprint.nvim",
+	{
 		"epwalsh/obsidian.nvim",
 		tag = "*",
-	})
-	use({
+	},
+	-- database client
+	{
 		"kndndrj/nvim-dbee",
-		requires = {
+		dependencies = {
 			"MunifTanjim/nui.nvim",
 		},
-		run = function()
+		build = function()
 			require("dbee").install()
 		end,
-	})
-end)
+	},
+})

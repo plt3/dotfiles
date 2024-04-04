@@ -1,5 +1,3 @@
-require("impatient")
-
 require("pault.settings")
 require("pault.plugins")
 require("pault.remaps")

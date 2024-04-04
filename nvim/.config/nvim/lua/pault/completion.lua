@@ -1,5 +1,8 @@
 local cmp = require("cmp")
 
+-- add friendly-snippets
+require("luasnip.loaders.from_vscode").lazy_load()
+
 -- custom nvim-cmp setup
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
