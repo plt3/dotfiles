@@ -74,6 +74,9 @@ api.mapkey(
   },
   { domain: /duckduckgo\.com/i },
 );
+api.mapkey("gy", "Copy link without query string", function () {
+  api.Clipboard.write(window.location.href.split("?")[0]);
+});
 
 // disable (at least partially) on some sites
 api.unmapAllExcept(["J", "K", "o", "O"], /mail.google.com|cstimer.net/);

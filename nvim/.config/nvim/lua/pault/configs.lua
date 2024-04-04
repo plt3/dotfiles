@@ -114,7 +114,7 @@ require("lsp_signature").setup()
 require("nvim-tree").setup()
 nmap("<leader>s", ":NvimTreeFindFileToggle<CR>")
 
--- deugprint setup
+-- debugprint setup
 require("debugprint").setup({
 	filetypes = {
 		["python"] = {

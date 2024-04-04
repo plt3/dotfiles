@@ -60,7 +60,7 @@ export PYTHONSTARTUP="/Users/pault/.pythonrc.py"
 # make bash completion work
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 # not sure why this doesn't already get sourced by the line above but make ssh completion work
-. /opt/homebrew/Cellar/bash-completion@2/2.11/share/bash-completion/completions/ssh
+. /opt/homebrew/Cellar/bash-completion@2/2.13.0/share/bash-completion/completions/ssh
 
 # initialize zoxide
 eval "$(zoxide init bash)"

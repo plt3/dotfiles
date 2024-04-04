@@ -14,20 +14,20 @@
 # sudo yabai --load-sa
 # yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-yabai -m rule --add app="^System Settings$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Reminders$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Notes$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Dictionary$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Karabiner-Elements$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Karabiner-EventViewer$" sticky=on layer=above manage=off
-yabai -m rule --add app="^love$" sticky=on layer=above manage=off
-yabai -m rule --add app="^LogicalClock$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Python$" sticky=on layer=above manage=off
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Reminders$" manage=off
+yabai -m rule --add app="^Notes$" manage=off
+yabai -m rule --add app="^Dictionary$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^Karabiner-EventViewer$" manage=off
+yabai -m rule --add app="^love$" manage=off
+yabai -m rule --add app="^LogicalClock$" manage=off
+yabai -m rule --add app="^Python$" manage=off
 
 yabai -m config \
 	mouse_follows_focus on \
-	focus_follows_mouse autoraise \
+	focus_follows_mouse off \
 	window_origin_display default \
 	window_placement second_child \
 	window_zoom_persist on \

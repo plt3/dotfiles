@@ -899,7 +899,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "launchctl kickstart -k \"gui/${UID}/homebrew.mxcl.yabai\""
+                    "shell_command": "/opt/homebrew/bin/yabai --restart-service"
                   }
                 ],
                 "type": "basic"
