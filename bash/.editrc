@@ -1,0 +1,3 @@
+# necessary for readline programs to use vi mode
+# (see https://stackoverflow.com/a/6637884/14146321)
+bind -v

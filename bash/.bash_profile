@@ -55,7 +55,6 @@ mk() {
 }
 
 export PTPYTHON_CONFIG_HOME="/Users/pault/.config/ptpython"
-export PYTHONSTARTUP="/Users/pault/.pythonrc.py"
 
 # make bash completion work
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
