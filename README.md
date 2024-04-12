@@ -3,9 +3,10 @@
 ## Management:
 
 - Managed with stow
-  - in dotfiles directory, run `stow */` to create all links
-    - can run `stow -nv */` to see what it will do without affecting the filesystem first
-  - run `stow -D */` to remove all links
+  - in dotfiles directory, run `stow !(bookmarklets)/` to create all links
+    - note the `!(bookmarklets)/` glob because we don't need bookmarklets to be symlinked, they are just in this repo because they fit the theme
+    - can run `stow -nv !(bookmarklets)/` to see what it will do without affecting the filesystem first
+  - run `stow -D !(bookmarklets)/` to remove all links
 
 ## Goodies:
 
@@ -67,3 +68,7 @@
 - open clipboard's GitHub URL (like "brookhong/Surfingkeys")
 - when on DuckDuckGo, easily switch to Google with same query
 - nice dark colorscheme for omnibar
+
+### Bookmarklets:
+
+- remove viewed jobs from various job boards (LinkedIn, Indeed)

@@ -79,7 +79,7 @@ require("lazy").setup({
 	"andrewferrier/debugprint.nvim",
 	{
 		"epwalsh/obsidian.nvim",
-		tag = "*",
+		version = "*",
 	},
 	-- database client
 	{
@@ -90,5 +90,10 @@ require("lazy").setup({
 		build = function()
 			require("dbee").install()
 		end,
+	},
+	{
+		"NStefan002/2048.nvim",
+		cmd = "Play2048",
+		config = true,
 	},
 })
