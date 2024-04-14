@@ -243,11 +243,11 @@
             ]
           },
           {
-            "description": "copy + say date with shift + f9",
+            "description": "copy + say date with shift + f4",
             "manipulators": [
               {
                 "from": {
-                  "key_code": "f9",
+                  "key_code": "f4",
                   "modifiers": {
                     "mandatory": [
                       "shift"
@@ -264,11 +264,11 @@
             ]
           },
           {
-            "description": "say time with f9",
+            "description": "say time with f4",
             "manipulators": [
               {
                 "from": {
-                  "key_code": "f9"
+                  "key_code": "f4"
                 },
                 "to": [
                   {

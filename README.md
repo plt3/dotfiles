@@ -58,6 +58,7 @@
   - `note today` opens daily note
 - `stopwatch`: Python stopwatch utility to be stopped with `ctrl+c`
 - `multiplex`: open and tile minimal browser windows for last 4 URLs in clipboard (for watching multiple streams at once)
+- `sc2mp3`: easily download MP3 files from SoundCloud and tag them with title, artist, album, and album art using yt-dlp
 
 ### Vim:
 

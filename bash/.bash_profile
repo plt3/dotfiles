@@ -42,7 +42,7 @@ alias dps="docker ps"
 alias iv="nvim ~/dotfiles/nvim/.config/nvim/init.lua"
 alias pf="~/scripts/pipFreezePrune/outputDeps.sh"
 alias memleak="top -pid $(pgrep a.out)"
-alias yt-dlp="yt-dlp -f mp4 -o \"%(title)s.%(ext)s\""
+alias ytvid="yt-dlp -f mp4 -o \"%(title)s.%(ext)s\""
 # restart icloud drive upload when it hangs
 alias drive="killall bird"
 
@@ -54,7 +54,8 @@ mk() {
 	cd "$1"
 }
 
-export PTPYTHON_CONFIG_HOME="/Users/pault/.config/ptpython"
+export PTPYTHON_CONFIG_HOME="$HOME/.config/ptpython"
+export PYTHONSTARTUP="$HOME/.config/ptpython/config.py"
 
 # make bash completion work
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
