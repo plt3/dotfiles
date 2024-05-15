@@ -77,12 +77,10 @@ require("lazy").setup({
 	"jay-babu/mason-nvim-dap.nvim",
 	"mfussenegger/nvim-jdtls",
 	"andrewferrier/debugprint.nvim",
-	{
-		"epwalsh/obsidian.nvim",
-		version = "*",
-	},
+	"epwalsh/obsidian.nvim",
 	-- database client
 	{
+		-- maybe try vim-dadbod (https://www.youtube.com/watch?v=ALGBuFLzDSA)?
 		"kndndrj/nvim-dbee",
 		dependencies = {
 			"MunifTanjim/nui.nvim",

@@ -54,6 +54,11 @@ mk() {
 	cd "$1"
 }
 
+# print number of files in given directory
+countfiles() {
+	\ls -1q "$1" | wc -l
+}
+
 export PTPYTHON_CONFIG_HOME="$HOME/.config/ptpython"
 export PYTHONSTARTUP="$HOME/.config/ptpython/config.py"
 
