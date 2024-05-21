@@ -94,4 +94,10 @@ require("lazy").setup({
 		cmd = "Play2048",
 		config = true,
 	},
+	{
+		"Dronakurl/usage-tracker.nvim",
+		config = function()
+			require("usage-tracker").setup({})
+		end,
+	},
 })

@@ -1,3 +1,6 @@
+# setup ble.sh
+[[ $- == *i* ]] && source "$HOME/.local/share/blesh/ble.sh" --noattach
+
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # set some homebrew environment variables
@@ -69,3 +72,6 @@ export PYTHONSTARTUP="$HOME/.config/ptpython/config.py"
 
 # initialize zoxide
 eval "$(zoxide init bash)"
+
+# setup ble.sh
+[[ ${BLE_VERSION-} ]] && ble-attach

@@ -8,3 +8,8 @@ set keymap vi-insert
 "ii": "\e\C-la"
 # alt-v enters path to vimwiki directory
 "\ev": "~/Library/Mobile\\ Documents/iCloud~md~obsidian/Documents/vimwiki/"
+
+# remove espace timeout for ble.sh
+$if Bash
+  set keyseq-timeout 0
+$endif

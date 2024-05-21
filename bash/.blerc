@@ -1,0 +1,29 @@
+# don't show vim mode below command line
+bleopt keymap_vi_mode_show:=
+
+# change cursor shape depending on mode
+ble-bind -m vi_nmap --cursor 2
+ble-bind -m vi_imap --cursor 5
+ble-bind -m vi_omap --cursor 4
+ble-bind -m vi_xmap --cursor 2
+ble-bind -m vi_cmap --cursor 0
+
+# C-c discards line
+ble-bind -m vi_imap -f 'C-c' discard-line
+ble-bind -m vi_nmap -f 'C-c' discard-line
+
+# change autocompletion colors
+ble-face auto_complete='fg=242,bg=235'
+ble-face region_insert='fg=fff,bg=235'
+
+# C-x C-v opens command in nvim
+VISUAL='nvim -X'
+ble-bind -m vi_imap -f 'C-x C-v' 'edit-and-execute-command'
+ble-bind -m vi_nmap -f 'C-x C-v' 'vi-command/edit-and-execute-command'
+
+# share history across sessions
+bleopt history_share=1
+
+# make FZF cd work again
+ble-import -d integration/fzf-completion
+ble-import -d integration/fzf-key-bindings

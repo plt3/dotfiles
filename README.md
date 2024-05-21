@@ -44,6 +44,11 @@
 - only set window border if more than one window on screen
 - swap current window with window on opposite display
 
+### Bash:
+
+- `ble.sh` configuration for better line editing, especially configured for Vim mode
+- aliases/convenient shell functions in `.bash_profile`
+
 ### Notetaking:
 
 - using Neovim with obsidian.nvim
