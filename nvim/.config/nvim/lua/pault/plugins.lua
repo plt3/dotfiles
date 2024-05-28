@@ -24,7 +24,13 @@ require("lazy").setup({
 	"airblade/vim-rooter",
 	"lervag/vimtex",
 	"christoomey/vim-tmux-navigator",
-	"preservim/vimux",
+	{
+		"preservim/vimux",
+		-- don't load it in notes script when run with iTerm hotkey window
+		cond = function()
+			return vim.fn.executable("tmux") == 1
+		end,
+	},
 	"numToStr/Comment.nvim",
 	"phaazon/hop.nvim",
 	"karb94/neoscroll.nvim",
@@ -70,8 +76,9 @@ require("lazy").setup({
 		},
 	},
 	"ray-x/lsp_signature.nvim",
-	"jose-elias-alvarez/null-ls.nvim",
-	"jay-babu/mason-null-ls.nvim",
+
+	"stevearc/conform.nvim",
+	"zapling/mason-conform.nvim",
 	"mfussenegger/nvim-dap",
 	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
 	"jay-babu/mason-nvim-dap.nvim",
@@ -100,4 +107,5 @@ require("lazy").setup({
 			require("usage-tracker").setup({})
 		end,
 	},
+	"onsails/lspkind.nvim",
 })

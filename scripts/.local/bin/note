@@ -12,7 +12,7 @@ if [ $1 ]; then
 	else
 		cd "$wikiDir"
 		# this passes all the files tracked by git and with the query into fzf
-		wantedFile=$(rg --files | rg -i $1 | fzf -i -1 -0 -q $1)
+		wantedFile=$(rg --files | rg -i $1 | fzf-tmux -p -i -1 -0 -q $1)
 		if [ $wantedFile ]; then
 			# if inside tmux, rename window to something descriptive
 			if [ -n "$TMUX" ]; then

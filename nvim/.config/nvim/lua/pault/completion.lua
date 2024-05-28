@@ -28,6 +28,18 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "buffer" },
 	}),
+	formatting = {
+		format = require("lspkind").cmp_format({
+			menu = {
+				buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				path = "[Path]",
+				luasnip = "[LuaSnip]",
+				nvim_lua = "[Lua]",
+				latex_symbols = "[Latex]",
+			},
+		}),
+	},
 })
 
 -- Use buffer source for '/'
