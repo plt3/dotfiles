@@ -24,6 +24,5 @@ require("nvim-treesitter.configs").setup({
 	},
 	indent = {
 		enable = true,
-		disable = { "python" }, -- python treesitter indentation seems to be buggy
 	},
 })

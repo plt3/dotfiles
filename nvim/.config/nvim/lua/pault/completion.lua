@@ -17,7 +17,13 @@ cmp.setup({
 		["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
 		["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping.disable,
-		["<C-y>"] = cmp.config.disable,
+		["<Tab>"] = cmp.mapping(
+			cmp.mapping.confirm({
+				behavior = cmp.ConfirmBehavior.Insert,
+				select = false,
+			}),
+			{ "i", "c" }
+		),
 		["<C-e>"] = cmp.mapping.disable,
 		["<CR>"] = cmp.mapping.disable,
 	},
