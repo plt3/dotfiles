@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+ITEM_DIR="$CONFIG_DIR/items"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+source "$CONFIG_DIR/colors.sh"
+source "$CONFIG_DIR/icons.sh"
+
+sketchybar --bar position=top height=26 blur_radius=25 color=0xc7000000
+
+default=(
+	padding_left=5
+	padding_right=5
+	icon.font="Iosevka Nerd Font:Bold:14.0"
+	label.font="Iosevka Nerd Font:Bold:14.0"
+	icon.color=0xffffffff
+	label.color=0xffffffff
+	icon.padding_left=4
+	icon.padding_right=4
+	label.padding_left=4
+	label.padding_right=4
+)
+sketchybar --default "${default[@]}"
+
+# left
+source "$ITEM_DIR/command.sh"
+source "$ITEM_DIR/spaces.sh"
+source "$ITEM_DIR/front_app.sh"
+
+# right
+sketchybar --add item clock right \
+	--set clock update_freq=10 icon= script="$PLUGIN_DIR/clock.sh" padding_right=0 \
+	--add item volume right \
+	--set volume script="$PLUGIN_DIR/volume.sh" \
+	--subscribe volume volume_change \
+	--add item battery right \
+	--set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+	--subscribe battery system_woke power_source_change \
+	--add alias "TextInputMenuAgent" right \
+	--set "TextInputMenuAgent" alias.color=0xffffffff padding_right=-15 padding_left=-15
+
+sketchybar --update

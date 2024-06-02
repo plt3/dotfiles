@@ -41,8 +41,14 @@
 ### Yabai:
 
 - no disabling of System Integrity Protection
-- only set window border if more than one window on screen
 - swap current window with window on opposite display
+
+### SketchyBar:
+
+- command icon with click to open System Settings, Activity Monitor, or to put computer to sleep
+- icons for each desktop space with list of all apps open in given space
+- name of focused app
+- keyboard layout, battery, volume, date/time indicators
 
 ### Bash:
 
