@@ -6,6 +6,7 @@ require("conform").setup({
 		cpp = { "clang_format" },
 		go = { "gofumpt" },
 		sh = { "shfmt" },
+		javascript = { "prettier" },
 	},
 	format_on_save = {},
 })

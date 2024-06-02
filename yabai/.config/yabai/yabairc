@@ -26,6 +26,7 @@ yabai -m rule --add app="^LogicalClock$" manage=off
 yabai -m rule --add app="^Python$" manage=off
 
 yabai -m config \
+	external_bar all:26:0 \
 	mouse_follows_focus on \
 	focus_follows_mouse off \
 	window_origin_display default \

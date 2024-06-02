@@ -76,7 +76,6 @@ require("lazy").setup({
 		},
 	},
 	"ray-x/lsp_signature.nvim",
-
 	"stevearc/conform.nvim",
 	"zapling/mason-conform.nvim",
 	"mfussenegger/nvim-dap",
@@ -100,12 +99,6 @@ require("lazy").setup({
 		"NStefan002/2048.nvim",
 		cmd = "Play2048",
 		config = true,
-	},
-	{
-		"Dronakurl/usage-tracker.nvim",
-		config = function()
-			require("usage-tracker").setup({})
-		end,
 	},
 	"onsails/lspkind.nvim",
 })

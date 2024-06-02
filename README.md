@@ -78,3 +78,4 @@
 ### Bookmarklets:
 
 - remove viewed jobs from various job boards (LinkedIn, Indeed)
+- toggle full-page overlay with message for taking breaks

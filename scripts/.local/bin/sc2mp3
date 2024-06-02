@@ -20,34 +20,17 @@ def download_file(info):
         "--embed-metadata": "",
     }
 
-    # --parse-metadata "oneword:%(artist)s" seems to try to expand oneword into a field
-    # and fails to set artist (or any other metadata). So, instead, set artist and other
-    # metadata to two-word placeholder, then use --replace-in-metadata to replace
-    # placeholder with actual value we want
-    replace_string = "REPLACE ME"
-
     if info.get("title", False):
         opts["-o"] = f"\"{info['artist']} - {info['title']}.{EXTENSION}\""
-        opts["--parse-metadata_1"] = f'"{replace_string}:%(title)s"'
-        opts["--replace-in-metadata_1"] = (
-            f"\"title\" \"{replace_string}\" \"{info['title']}\""
-        )
-        opts["--parse-metadata_2"] = f'"{replace_string}:%(artist)s"'
-        opts["--replace-in-metadata_2"] = (
-            f"\"artist\" \"{replace_string}\" \"{info['artist']}\""
-        )
+        opts["--parse-metadata_1"] = f"\" {info['title']}:%(title)s\""
+        opts["--parse-metadata_2"] = f"\" {info['artist']}:%(artist)s\""
 
     if info.get("album", False):
-        opts["--parse-metadata_3"] = f'"{replace_string}:%(album)s"'
-        opts["--replace-in-metadata_3"] = (
-            f"\"album\" \"{replace_string}\" \"{info['album']}\""
-        )
+        opts["--parse-metadata_3"] = f"\" {info['album']}:%(album)s\""
 
     opts_string = ""
     for switch, val in opts.items():
-        if switch.startswith("--parse-metadata") or switch.startswith(
-            "--replace-in-metadata"
-        ):
+        if switch.startswith("--parse-metadata"):
             opts_string += f" {switch[:-2]}"
         else:
             opts_string += f" {switch}"
