@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "icons.sh"
+source "$CONFIG_DIR/icons.sh"
 
 case "$1" in
 "Terminal" | "Warp" | "kitty" | "iTerm2")
