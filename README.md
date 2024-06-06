@@ -45,10 +45,15 @@
 
 ### SketchyBar:
 
-- command icon with click to open System Settings, Activity Monitor, or to put computer to sleep
+- Apple icon with click to open System Settings, Activity Monitor, or to put computer to sleep
 - icons for each desktop space with list of all apps open in given space
 - name of focused app
 - keyboard layout, battery, volume, date/time indicators
+
+### SketchyVim:
+
+- basic configuration to use Vim motions in all text inputs
+- display current mode in SketchyBar
 
 ### Bash:
 

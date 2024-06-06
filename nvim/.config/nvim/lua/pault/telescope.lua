@@ -9,7 +9,7 @@ require("telescope").setup({
 			},
 		},
 		vimgrep_arguments = {
-			"rg",
+			"/opt/homebrew/bin/rg", -- need full path for notes script that doesn't get $PATH
 			"--color=never",
 			"--no-heading",
 			"--with-filename",
@@ -23,12 +23,12 @@ require("telescope").setup({
 		find_files = {
 			hidden = true,
 		},
-		live_grep = {
-			mappings = {
-				i = {
-					["<c-f>"] = require("telescope.actions").to_fuzzy_refine,
-				},
-			},
+	},
+	extensions = {
+		-- TODO: doesn't look like these options are getting set
+		smart_open = {
+			match_algorithm = "fzf",
+			show_scores = true,
 		},
 	},
 })
@@ -36,18 +36,24 @@ require("telescope").setup({
 -- load telescope-fzf-native
 require("telescope").load_extension("fzf")
 
+-- load smart_open.nvim
+require("telescope").load_extension("smart_open")
+
 nmap("<leader>f", teleBuiltin.find_files)
--- default to git_files but fall back to find_files
 nmap("<leader>h", function()
-	vim.fn.system("git rev-parse --is-inside-work-tree")
-	if vim.v.shell_error == 0 then
-		teleBuiltin.git_files()
-	else
-		teleBuiltin.find_files()
-	end
+	require("telescope").extensions.smart_open.smart_open({
+		filename_first = false,
+		cwd_only = true,
+	})
 end)
 nmap("<leader>b", teleBuiltin.buffers)
 -- project-wide fuzzy search
+-- can also do Telescope live_grep, then <C-space> runs the fuzzy finder over the
+-- results
 nmap("<leader>r", function()
-	teleBuiltin.grep_string({ search = "" })
+	-- avoid searching in filenames
+	teleBuiltin.grep_string({
+		only_sort_text = true,
+		search = "",
+	})
 end)

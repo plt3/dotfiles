@@ -10,6 +10,8 @@ export EDITOR="nvim"
 # view man pages in nvim
 export MANPAGER="nvim +Man!"
 
+export FZF_TMUX_OPTS='-p'
+
 # I guess I want this? cscp breaks without it due to glob excluding files
 shopt -s extglob
 

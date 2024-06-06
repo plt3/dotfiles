@@ -3,14 +3,14 @@
 # Material Design Icons
 
 export ICON_CMD=󰘳
+export ICON_APPLE=
 export ICON_COG=󰒓   # system settings, system information, tinkertool
 export ICON_CHART=󱕍 # activity monitor, btop
 export ICON_LOCK=󰌾
 
 export ICONS_SPACE=(󰎤 󰎧 󰎪 󰎭 󰎱 󰎳 󰎶 󰎹 󰎼 󰽽)
 
-export ICON_APP=󰣆 # fallback app
-# export ICON_TERM=󰆍 # fallback terminal app, terminal, warp, iterm2
+export ICON_APP=󰣆         # fallback app
 export ICON_TERM=󰆍        # fallback terminal app, terminal, warp, iterm2
 export ICON_PACKAGE=󰏓     # brew
 export ICON_DEV=󰅨         # nvim, neovide, xcode, vscode, intellij
@@ -61,3 +61,4 @@ export ICON_SWAP=󰁯
 export ICON_RAM=󰓅
 export ICON_DISK=󰋊 # disk utility
 export ICON_CPU=󰘚
+export ICON_VIM=

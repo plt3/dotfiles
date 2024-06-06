@@ -47,6 +47,15 @@ require("lazy").setup({
 	},
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{
+		"danielfalk/smart-open.nvim",
+		branch = "0.2.x",
+		dependencies = {
+			"kkharji/sqlite.lua",
+			-- Only required if using match_algorithm fzf
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		},
+	},
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = function()
 			pcall(require("nvim-treesitter.install").update({ with_sync = true }))

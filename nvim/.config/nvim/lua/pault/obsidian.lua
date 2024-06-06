@@ -40,6 +40,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.o.wrap = true
 		vim.o.colorcolumn = ""
 		vim.o.textwidth = 0
+		vim.o.breakindent = true
+		vim.o.breakindentopt = "shift:2"
 	end,
 	group = obsidianGroup,
 	pattern = "markdown",
