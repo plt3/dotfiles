@@ -42,16 +42,6 @@ vim.api.nvim_create_autocmd("FileType", {
 -- vimux configuration
 vim.g.VimuxOrientation = "h"
 vim.g.VimuxHeight = "45"
-vim.g.VimuxLastCommand = "make && ./a.out"
--- if nvim is opened with a python file, automatically set VimuxLastCommand
-local vimuxGroup = vim.api.nvim_create_augroup("VimuxGroup", { clear = true })
-vim.api.nvim_create_autocmd("VimEnter", {
-	callback = function()
-		vim.g.VimuxLastCommand = "python3 " .. vim.api.nvim_buf_get_name(0)
-	end,
-	group = vimuxGroup,
-	pattern = "*.py",
-})
 nmap("<leader>vp", ":silent wall <bar> VimuxPromptCommand<CR>")
 -- because my weird .inputrc makes VimuxClearTerminalScreen not work
 nmap("<leader>vc", ':call VimuxSendKeys("ii")<CR>')
@@ -59,7 +49,30 @@ nmap("<leader>vs", ":VimuxCloseRunner<CR>")
 nmap("<leader>vi", ":VimuxInspectRunner<CR>")
 nmap("<leader>vz", ":VimuxZoomRunner<CR>")
 nmap("<leader>vk", ":VimuxInterruptRunner<CR>")
-nmap("<C-s>", ":silent wall <bar> VimuxRunLastCommand<CR>")
+-- <C-s> writes all buffers, then runs last vimux command. If there is no last vimux
+-- command, it finds the last command run in a tmux pane in the same window, and sets
+-- that as the last command
+nmap("<C-s>", function()
+	vim.cmd.wall({ mods = { silent = true } })
+
+	if vim.g.VimuxLastCommand == nil then
+		vim.fn.VimuxRunCommand("")
+		local pane_lines = vim.fn.system({ "tmux", "capture-pane", "-S", "-5", "-t", vim.g.VimuxRunnerIndex, "-p" })
+
+		-- note that command line prompt is hard-coded
+		local prompt = "^(pault @ pauls%-air%-8.->) (.+)"
+		local last_cmd = nil
+
+		for line in pane_lines:gmatch("[^\r\n]+") do
+			local _, _, _, command = line:lower():find(prompt)
+			if command ~= nil then
+				last_cmd = command
+			end
+		end
+		vim.g.VimuxLastCommand = last_cmd
+	end
+	vim.cmd.VimuxRunLastCommand()
+end)
 
 -- telescope configuration
 require("pault.telescope")
@@ -144,3 +157,6 @@ nmap("<leader><leader>b", require("dbee").toggle)
 --         "type": "sqlite"
 --     }
 -- ]'
+
+-- rsync.nvim configuration
+require("rsync").setup({ sync_on_save = false })

@@ -7,6 +7,7 @@ require("conform").setup({
 		go = { "gofumpt" },
 		sh = { "shfmt" },
 		javascript = { "prettier" },
+		typescript = { "prettier" },
 	},
 	format_on_save = {},
 })

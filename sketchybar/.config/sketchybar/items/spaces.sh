@@ -32,7 +32,6 @@ space_creator=(
 	padding_left=10
 	label.drawing=off
 	icon.padding_right=0
-	display=active
 	script="$PLUGIN_DIR/space_windows.sh"
 	icon.color=$WHITE
 )

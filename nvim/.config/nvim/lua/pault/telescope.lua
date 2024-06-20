@@ -9,7 +9,7 @@ require("telescope").setup({
 			},
 		},
 		vimgrep_arguments = {
-			"/opt/homebrew/bin/rg", -- need full path for notes script that doesn't get $PATH
+			"rg",
 			"--color=never",
 			"--no-heading",
 			"--with-filename",

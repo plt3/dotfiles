@@ -3,7 +3,6 @@
 front_app=(
 	icon.background.drawing=on
 	icon.padding_right=5
-	display=active
 	script="$PLUGIN_DIR/front_app.sh"
 	click_script="open -a 'Mission Control'"
 )

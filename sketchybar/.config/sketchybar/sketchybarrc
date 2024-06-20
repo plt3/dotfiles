@@ -28,6 +28,7 @@ defaults=(
 	icon.padding_right=$PADDINGS
 	label.font="$FONT:Semibold:13.0"
 	label.color=$LABEL_COLOR
+	alias.color=$LABEL_COLOR
 	label.padding_left=$PADDINGS
 	label.padding_right=$PADDINGS
 	padding_right=$PADDINGS
@@ -61,14 +62,13 @@ sketchybar --add item clock right \
 	--set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
 	--subscribe battery system_woke power_source_change \
 	--add alias "TextInputMenuAgent" right \
-	--set "TextInputMenuAgent" alias.color=0xffffffff \
-	--set "TextInputMenuAgent" alias.color=0xffffffff padding_right=-15 padding_left=-15
+	--set "TextInputMenuAgent" padding_right=-15 padding_left=-15
 
 # sketchyvim mode
 sketchybar --add item svim.mode right \
 	--set svim.mode popup.align=right \
 	icon=$ICON_VIM \
-	icon.color=0xffff6578 \
+	icon.color=$RED \
 	--subscribe svim.mode front_app_switched
 
 sketchybar --update

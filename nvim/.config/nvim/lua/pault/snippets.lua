@@ -27,6 +27,9 @@ luasnip.add_snippets(nil, {
 		),
 		s("new", fmt("## {}:\n\n\n", { partial(os.date, "%-m/%-d/%y") })),
 	},
+	typescript = {
+		s("cl", fmt("console.log({})", { i(1) })),
+	},
 })
 
 -- snippet expansion/navigation remaps (because configuring them in nvim-cmp was too hard)

@@ -110,4 +110,12 @@ require("lazy").setup({
 		config = true,
 	},
 	"onsails/lspkind.nvim",
+	{
+		"OscarCreator/rsync.nvim",
+		build = "make",
+		dependencies = "nvim-lua/plenary.nvim",
+		config = function()
+			require("rsync").setup({ sync_on_save = false })
+		end,
+	},
 })
