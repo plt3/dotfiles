@@ -6,11 +6,13 @@ require("mason").setup()
 require("mason-lspconfig").setup({
 	ensure_installed = {
 		"pyright",
-		"tsserver",
+		"ts_ls",
 		"clangd",
 		"gopls",
 		"jdtls",
 		"lua_ls",
+		"phpactor",
+		"psalm",
 	},
 	handlers = {
 		lsp.default_setup,

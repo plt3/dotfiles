@@ -77,3 +77,6 @@ eval "$(zoxide init bash)"
 
 # setup ble.sh
 [[ ${BLE_VERSION-} ]] && ble-attach
+
+export PATH="/opt/homebrew/opt/php@8.3/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@8.3/sbin:$PATH"

@@ -24,6 +24,8 @@ yabai -m rule --add app="^Karabiner-EventViewer$" manage=off
 yabai -m rule --add app="^love$" manage=off
 yabai -m rule --add app="^LogicalClock$" manage=off
 yabai -m rule --add app="^Python$" manage=off
+yabai -m rule --add app="^Google Chrome for Testing$" manage=off
+yabai -m rule --add app="^Google Chrome$" manage=off
 
 yabai -m config \
 	external_bar all:26:0 \

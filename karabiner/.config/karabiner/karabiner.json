@@ -69,7 +69,7 @@
             ]
           },
           {
-            "description": "Stoopid remaps so command + 0 goes to first safari/brave tab and command + 1 goes to first desktop space",
+            "description": "Stoopid remaps so command + [ / command + ] goes to first/last safari/brave tab and command + 1 goes to first desktop space (note: need to add config both here and in keyboard settings if 9 desktop spaces)",
             "manipulators": [
               {
                 "from": {
@@ -104,7 +104,7 @@
                   }
                 ],
                 "from": {
-                  "key_code": "0",
+                  "key_code": "open_bracket",
                   "modifiers": {
                     "mandatory": [
                       "command"
@@ -114,6 +114,34 @@
                 "to": [
                   {
                     "key_code": "1",
+                    "modifiers": [
+                      "left_command"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "bundle_identifiers": [
+                      "^com\\.apple\\.Safari$",
+                      "^com\\.brave\\.Browser$"
+                    ],
+                    "type": "frontmost_application_if"
+                  }
+                ],
+                "from": {
+                  "key_code": "close_bracket",
+                  "modifiers": {
+                    "mandatory": [
+                      "command"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "9",
                     "modifiers": [
                       "left_command"
                     ]

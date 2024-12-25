@@ -82,7 +82,7 @@ api.mapkey("gy", "Copy link without query string", function () {
 api.unmapAllExcept(["J", "K", "o", "O"], /mail.google.com|cstimer.net/);
 api.unmapAllExcept(
   [],
-  /localhost|https:\/\/bubble.io|coderbyte.com|docs.google.com|bestsolaris.com|127.0.0.1|nbaredzone.applikuapp.com/,
+  /localhost|https:\/\/bubble.io|coderbyte.com|docs.google.com|bestsolaris.com|127.0.0.1|nbaredzone.applikuapp.com|nytimes.com\/crosswords|desmos.com/,
 );
 api.unmap("j", /duckduckgo.com/);
 api.unmap("k", /duckduckgo.com/);

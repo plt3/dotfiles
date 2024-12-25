@@ -37,6 +37,18 @@ vim.api.nvim_create_autocmd("FileType", {
 		nmap("k", "gk", { buffer = true })
 		nmap("gj", "j", { buffer = true })
 		nmap("gk", "k", { buffer = true })
+		-- fast-forward through YouTube video by pressing right/left arrows without
+		-- leaving nvim
+		nmap(
+			"<Right>",
+			":silent !brave-cli execute '(function () {document.querySelector(\"video\").currentTime += 5;})();'<CR>",
+			{ buffer = true, silent = true }
+		)
+		nmap(
+			"<Left>",
+			":silent !brave-cli execute '(function () {document.querySelector(\"video\").currentTime -= 5;})();'<CR>",
+			{ buffer = true, silent = true }
+		)
 		vim.o.wrap = true
 		vim.o.colorcolumn = ""
 		vim.o.textwidth = 0
