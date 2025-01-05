@@ -24,6 +24,7 @@ vim.o.formatoptions = "jcrql"
 vim.o.lbr = true
 vim.o.cursorline = true
 vim.o.conceallevel = 1
+vim.o.foldenable = false
 
 vim.g.mapleader = " "
 

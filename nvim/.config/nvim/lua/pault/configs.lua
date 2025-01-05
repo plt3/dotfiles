@@ -142,21 +142,5 @@ require("debugprint").setup({
 -- obsidian.nvim configuration
 require("pault.obsidian")
 
--- nvim-dbee configuration
-require("dbee").setup({
-	sources = {
-		require("dbee.sources").EnvSource:new("DBEE_CONNECTIONS"),
-	},
-})
-nmap("<leader><leader>b", require("dbee").toggle)
--- set new connection as env var with
--- export DBEE_CONNECTIONS='[
---     {
---         "name": "SQLite database",
---         "url": "~/path/to/db.sqlite",
---         "type": "sqlite"
---     }
--- ]'
-
 -- rsync.nvim configuration
 require("rsync").setup({ sync_on_save = false })

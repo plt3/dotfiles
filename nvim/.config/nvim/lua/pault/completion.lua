@@ -43,6 +43,7 @@ cmp.setup({
 				luasnip = "[LuaSnip]",
 				nvim_lua = "[Lua]",
 				latex_symbols = "[Latex]",
+				["vim-dadbod-completion"] = "[DB]",
 			},
 		}),
 	},
@@ -68,4 +69,13 @@ cmp.setup.cmdline(":", {
 	}, {
 		{ name = "cmdline" },
 	}),
+})
+
+-- setup completion for vim-dadbod
+cmp.setup.filetype({ "sql" }, {
+	sources = {
+		{ name = "vim-dadbod-completion" },
+		{ name = "buffer" },
+		{ name = "luasnip" },
+	},
 })

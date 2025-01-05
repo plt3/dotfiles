@@ -93,17 +93,6 @@ require("lazy").setup({
 	"mfussenegger/nvim-jdtls",
 	"andrewferrier/debugprint.nvim",
 	"epwalsh/obsidian.nvim",
-	-- database client
-	{
-		-- maybe try vim-dadbod (https://www.youtube.com/watch?v=ALGBuFLzDSA)?
-		"kndndrj/nvim-dbee",
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-		},
-		build = function()
-			require("dbee").install()
-		end,
-	},
 	{
 		"NStefan002/2048.nvim",
 		cmd = "Play2048",
@@ -114,5 +103,21 @@ require("lazy").setup({
 		"OscarCreator/rsync.nvim",
 		build = "make",
 		dependencies = "nvim-lua/plenary.nvim",
+	},
+	{
+		"kristijanhusak/vim-dadbod-ui",
+		dependencies = {
+			{ "tpope/vim-dadbod", lazy = true },
+			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+		},
+		cmd = {
+			"DBUI",
+			"DBUIToggle",
+			"DBUIAddConnection",
+			"DBUIFindBuffer",
+		},
+		init = function()
+			vim.g.db_ui_use_nerd_fonts = 1
+		end,
 	},
 })
