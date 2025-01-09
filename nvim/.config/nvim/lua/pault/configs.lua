@@ -144,3 +144,17 @@ require("pault.obsidian")
 
 -- rsync.nvim configuration
 require("rsync").setup({ sync_on_save = false })
+
+-- vim-dadbod-ui configuration
+vim.g.db_ui_use_nerd_fonts = 1
+vim.g.db_ui_execute_on_save = 0
+nmap("<leader>ms", ":tabe <bar> DBUI<CR>")
+local dadbod_group = vim.api.nvim_create_augroup("DadbodGroup", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function()
+		-- map <leader>e to only execute query under cursor (if separated by blank lines)
+		nmap("<leader>e", "vip S", { buffer = true, remap = true })
+	end,
+	group = dadbod_group,
+	pattern = { "sql", "mysql" },
+})

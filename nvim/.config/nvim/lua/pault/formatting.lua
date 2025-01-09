@@ -8,6 +8,7 @@ require("conform").setup({
 		sh = { "shfmt" },
 		javascript = { "prettier" },
 		typescript = { "prettier" },
+		sql = { "sql_formatter" },
 	},
 	format_on_save = {},
 })
