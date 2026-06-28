@@ -49,11 +49,11 @@ vim.api.nvim_create_autocmd("FileType", {
 			":silent !brave-cli execute '(function () {document.querySelector(\"video\").currentTime -= 5;})();'<CR>",
 			{ buffer = true, silent = true }
 		)
-		vim.o.wrap = true
-		vim.o.colorcolumn = ""
-		vim.o.textwidth = 0
-		vim.o.breakindent = true
-		vim.o.breakindentopt = "shift:2"
+		vim.opt_local.wrap = true
+		vim.opt_local.colorcolumn = ""
+		vim.opt_local.textwidth = 0
+		vim.opt_local.breakindent = true
+		vim.opt_local.breakindentopt = "shift:2"
 	end,
 	group = obsidianGroup,
 	pattern = "markdown",

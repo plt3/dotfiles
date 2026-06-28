@@ -47,13 +47,4 @@ nmap("<leader>h", function()
 	})
 end)
 nmap("<leader>b", teleBuiltin.buffers)
--- project-wide fuzzy search
--- can also do Telescope live_grep, then <C-space> runs the fuzzy finder over the
--- results
-nmap("<leader>r", function()
-	-- avoid searching in filenames
-	teleBuiltin.grep_string({
-		only_sort_text = true,
-		search = "",
-	})
-end)
+nmap("<leader>l", teleBuiltin.live_grep)

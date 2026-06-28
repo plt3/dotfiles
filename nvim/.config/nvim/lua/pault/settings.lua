@@ -25,6 +25,7 @@ vim.o.lbr = true
 vim.o.cursorline = true
 vim.o.conceallevel = 1
 vim.o.foldenable = false
+vim.opt.diffopt = "internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
 
 vim.g.mapleader = " "
 

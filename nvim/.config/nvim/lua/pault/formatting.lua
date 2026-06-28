@@ -13,4 +13,8 @@ require("conform").setup({
 	format_on_save = {},
 })
 
+require("conform").formatters.black = {
+	append_args = { "--line-length", "120" },
+}
+
 require("mason-conform").setup()
