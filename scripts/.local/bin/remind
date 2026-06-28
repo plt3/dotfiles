@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# Create a macOS reminder for a specific time tomorrow.
+# Usage: remind <hour-24> "<reminder text>"
+
+if [ $# -lt 2 ]; then
+  echo "Usage: $0 <HH[:MM]> \"<reminder text>\""
+  exit 1
+fi
+
+TIME=$1
+shift
+REMINDER="$*"
+
+# Accepts HH or HH:MM
+if [[ $TIME =~ ^([01]?[0-9]|2[0-3])$ ]]; then
+  HOUR=$TIME
+  MINUTE=0
+elif [[ $TIME =~ ^([01]?[0-9]|2[0-3]):[0-5][0-9]$ ]]; then
+  HOUR=${TIME%%:*}
+  MINUTE=${TIME##*:}
+else
+  echo "Time must be in HH or HH:MM 24-hour format"
+  exit 1
+fi
+
+RESULT=$(osascript <<EOF
+try
+    set tomorrow to (current date) + 1 * days
+    set hours of tomorrow to $HOUR
+    set minutes of tomorrow to $MINUTE
+    set seconds of tomorrow to 0
+    tell application "Reminders"
+        make new reminder with properties {name:"$REMINDER", remind me date:tomorrow}
+    end tell
+    return "success:" & (tomorrow as string)
+on error errMsg
+    return "error:" & errMsg
+end try
+EOF
+)
+
+if [[ $RESULT == success:* ]]; then
+  WHEN=${RESULT#success:}
+  echo "Reminder created for: $WHEN"
+else
+  MSG=${RESULT#error:}
+  echo "Failed to create reminder: $MSG"
+fi

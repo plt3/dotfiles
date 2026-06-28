@@ -1,8 +1,3 @@
-# setup ble.sh
-[[ $- == *i* ]] && source "$HOME/.local/share/blesh/ble.sh" --noattach
-
-export BASH_SILENCE_DEPRECATION_WARNING=1
-
 # set some homebrew environment variables
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -35,7 +30,7 @@ alias n="nvim"
 alias cat="bat -H 0:"
 alias ls="lsd"
 alias ll="lsd --long --almost-all --header"
-alias lt='lsd --tree --all -I ".git" -I ".DS_Store" -I ".venv" -I "venv" -I "*.pyc" -I "__pycache__" -I "node_modules"'
+alias lt='lsd --tree --all -I ".git" -I ".DS_Store" -I "venv" -I ".venv" -I "*.pyc" -I "__pycache__" -I "node_modules" -I "vendor"'
 alias notify="osascript -e 'display notification \"The command finished!\"'; afplay /System/Library/Sounds/Blow.aiff -v 5"
 alias dockertog="if docker ps &> /dev/null; then echo \"quitting Docker...\"; osascript -e 'quit app \"Docker\"'; else echo \"starting Docker...\"; open -a Docker; fi"
 alias drmf='docker rm -f $(docker ps -q | head -n 1)'
@@ -50,6 +45,7 @@ alias memleak="top -pid $(pgrep a.out)"
 alias ytvid="yt-dlp -f \"bestvideo[height<=1080]+bestaudio/best[height<=1080]\""
 # restart icloud drive upload when it hangs
 alias drive="killall bird"
+alias pj="pbpaste | jq"
 
 source ~/.bashrc
 
@@ -64,21 +60,12 @@ countfiles() {
 	\ls -1q "$1" | wc -l
 }
 
-export PTPYTHON_CONFIG_HOME="$HOME/.config/ptpython"
-export PYTHONSTARTUP="$HOME/.config/ptpython/config.py"
-
 # make bash completion work
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 # not sure why this doesn't already get sourced by the line above but make ssh completion work
-. /opt/homebrew/Cellar/bash-completion@2/2.13.0/share/bash-completion/completions/ssh
+. /opt/homebrew/Cellar/bash-completion@2/2.17.0/share/bash-completion/completions/ssh
 
 # initialize zoxide
 eval "$(zoxide init bash)"
-
-# setup ble.sh
-[[ ${BLE_VERSION-} ]] && ble-attach
-
-export PATH="/opt/homebrew/opt/php@8.3/bin:$PATH"
-export PATH="/opt/homebrew/opt/php@8.3/sbin:$PATH"
 
 # ffmpeg -i input.mov -vcodec libx264 -crf 23 -acodec aac output.mp4

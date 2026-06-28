@@ -3,6 +3,7 @@
 	email = pltorigami@gmail.com
 [core]
 	editor = nvim
+	excludesFile = ~/.gitignore
 [credential]
 	helper = osxkeychain
 	# set to true if I want to differentiate between gh accounts (will ask for PAT when

@@ -25,10 +25,16 @@ require("telescope").setup({
 		},
 	},
 	extensions = {
-		-- TODO: doesn't look like these options are getting set
 		smart_open = {
-			match_algorithm = "fzf",
-			show_scores = true,
+			mappings = {
+				i = {
+					-- works around smart_open overriding ctrl-w keybind for deleting
+					-- word. should be able to remove this once this issue is resolved:
+					-- https://github.com/danielfalk/smart-open.nvim/issues/71
+					["<C-w>"] = function() vim.api.nvim_input("<c-s-w>") end,
+				},
+			},
+			ignore_patterns = {},
 		},
 	},
 })
@@ -48,3 +54,5 @@ nmap("<leader>h", function()
 end)
 nmap("<leader>b", teleBuiltin.buffers)
 nmap("<leader>l", teleBuiltin.live_grep)
+
+nmap("<leader>gg", teleBuiltin.git_branches)

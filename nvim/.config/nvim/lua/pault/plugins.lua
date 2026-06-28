@@ -32,7 +32,7 @@ require("lazy").setup({
 		end,
 	},
 	"numToStr/Comment.nvim",
-	"phaazon/hop.nvim",
+	"smoka7/hop.nvim",
 	"karb94/neoscroll.nvim",
 	{ "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim" },
 	"folke/tokyonight.nvim",
@@ -55,35 +55,23 @@ require("lazy").setup({
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
 	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = function()
-			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
-		end,
-	},
+	"romus204/tree-sitter-manager.nvim",
 	"lukas-reineke/indent-blankline.nvim",
-	{
-		"VonHeikemen/lsp-zero.nvim",
-		dependencies = {
-			-- LSP Support
-			{ "neovim/nvim-lspconfig" },
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
-
-			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" },
-			{ "hrsh7th/cmp-buffer" },
-			{ "hrsh7th/cmp-path" },
-			{ "hrsh7th/cmp-cmdline" },
-			{ "saadparwaiz1/cmp_luasnip" },
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "hrsh7th/cmp-nvim-lua" },
-
-			-- Snippets
-			{ "L3MON4D3/LuaSnip" },
-			{ "rafamadriz/friendly-snippets" },
-		},
-	},
+	-- LSP Support
+	{ "neovim/nvim-lspconfig" },
+	{ "williamboman/mason.nvim" },
+	{ "williamboman/mason-lspconfig.nvim" },
+	-- Autocompletion
+	{ "hrsh7th/nvim-cmp" },
+	{ "hrsh7th/cmp-buffer" },
+	{ "hrsh7th/cmp-path" },
+	{ "hrsh7th/cmp-cmdline" },
+	{ "saadparwaiz1/cmp_luasnip" },
+	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "hrsh7th/cmp-nvim-lua" },
+	-- Snippets
+	{ "L3MON4D3/LuaSnip" },
+	{ "rafamadriz/friendly-snippets" },
 	"ray-x/lsp_signature.nvim",
 	"stevearc/conform.nvim",
 	"zapling/mason-conform.nvim",
@@ -99,6 +87,7 @@ require("lazy").setup({
 		config = true,
 	},
 	"onsails/lspkind.nvim",
+	"mfussenegger/nvim-lint",
 	{
 		"OscarCreator/rsync.nvim",
 		build = "make",
@@ -108,13 +97,27 @@ require("lazy").setup({
 		"kristijanhusak/vim-dadbod-ui",
 		dependencies = {
 			{ "tpope/vim-dadbod", lazy = true },
-			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true }, -- Optional
 		},
 		cmd = {
 			"DBUI",
 			"DBUIToggle",
 			"DBUIAddConnection",
 			"DBUIFindBuffer",
+		},
+	},
+	{ "gbprod/substitute.nvim" },
+	{ "fpob/nette.vim" },
+	{ "nvim-treesitter/nvim-treesitter", enabled = false },
+	{
+		"mistweaverco/kulala.nvim",
+		ft = { "http", "rest" },
+		opts = {
+			global_keymaps = true,
+			ui = {
+				max_response_size = 1024 * 1024, -- 1MB
+				show_request_summary = false,
+			}
 		},
 	},
 })

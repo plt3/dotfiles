@@ -25,6 +25,5 @@ end)
 -- be able to repeat indents on visual selections
 vim.keymap.set("x", "<", "<gv")
 vim.keymap.set("x", ">", ">gv")
--- move visual selection up/down with J/K
-vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("x", "K", ":m '>-2<CR>gv=gv")
+-- duplicate line and comment out first one
+nmap("yc", "yygccp", {remap = true})

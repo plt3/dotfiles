@@ -32,6 +32,8 @@ luasnip.add_snippets(nil, {
 	},
 })
 
+luasnip.filetype_extend("mysql", {"sql"})
+
 -- snippet expansion/navigation remaps (because configuring them in nvim-cmp was too hard)
 vim.keymap.set("i", "<Tab>", function()
 	return luasnip.expand_or_jumpable() and "<Plug>luasnip-expand-or-jump" or "<Tab>"

@@ -4,6 +4,7 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.smartindent = true
+vim.o.autoindent = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.splitright = true
@@ -18,14 +19,15 @@ vim.o.backup = false
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
 vim.o.signcolumn = "yes"
-vim.o.colorcolumn = "89"
+-- vim.o.colorcolumn = "89"
 vim.o.textwidth = 88
-vim.o.formatoptions = "jcrql"
+-- vim.o.formatoptions = "jcrql"
+vim.o.formatoptions = "jrql"
 vim.o.lbr = true
 vim.o.cursorline = true
 vim.o.conceallevel = 1
 vim.o.foldenable = false
-vim.opt.diffopt = "internal,filler,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
+vim.o.diffopt="internal,filler,closeoff,algorithm:histogram,context:5,linematch:60"
 
 vim.g.mapleader = " "
 
@@ -35,7 +37,7 @@ vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
 vim.api.nvim_create_user_command("Grep", ":silent grep <args>", { nargs = "+" })
 
 vim.g.markdown_fenced_languages =
-	{ "sql", "python", "sh", "html", "css", "javascript", "dockerfile", "yaml", "json", "vim", "cpp" }
+	{ "sql", "python", "sh", "html", "css", "javascript", "dockerfile", "yaml", "json", "vim", "cpp", "php", "groovy" }
 
 -- highlight on yank
 local yankHiGroup = vim.api.nvim_create_augroup("YankHighlight", { clear = true })

@@ -12,7 +12,7 @@
 
 ### Neovim:
 
-- LSP setup for Python, Javascript, C/C++, Go, Java (!), Lua with lsp-zero.nvim, nvim-jdtls, and mason.nvim
+- LSP setup for Python, Javascript, C/C++, Go, Java (!), Lua with nvim-lspconfig and mason.nvim
 - DAP (debugging) setup for Python, C/C++, Java (!!), Go with nvim-dap and nvim-dap-ui
   - dot-repeatable keybindings for stepping over, running to cursor, and toggling breakpoints!
 - snippets, formatting on save

@@ -106,7 +106,8 @@
                   {
                     "bundle_identifiers": [
                       "^com\\.apple\\.Safari$",
-                      "^com\\.brave\\.Browser$"
+                      "^com\\.brave\\.Browser$",
+                      "^com\\.google\\.Chrome$"
                     ],
                     "type": "frontmost_application_if"
                   }
@@ -134,7 +135,8 @@
                   {
                     "bundle_identifiers": [
                       "^com\\.apple\\.Safari$",
-                      "^com\\.brave\\.Browser$"
+                      "^com\\.brave\\.Browser$",
+                      "^com\\.google\\.Chrome$"
                     ],
                     "type": "frontmost_application_if"
                   }
@@ -150,45 +152,6 @@
                 "to": [
                   {
                     "key_code": "9",
-                    "modifiers": [
-                      "left_command"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "Command + . closes downloads bar in Brave",
-            "manipulators": [
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": [
-                      "^com\\.brave\\.Browser$"
-                    ],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "from": {
-                  "key_code": "e",
-                  "modifiers": {
-                    "mandatory": [
-                      "command"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "c",
-                    "modifiers": [
-                      "left_command",
-                      "left_shift"
-                    ]
-                  },
-                  {
-                    "key_code": "comma",
                     "modifiers": [
                       "left_command"
                     ]
@@ -225,136 +188,6 @@
                     "modifiers": [
                       "left_option"
                     ]
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "sleep with shift + escape",
-            "manipulators": [
-              {
-                "from": {
-                  "simultaneous": [
-                    {
-                      "key_code": "left_shift"
-                    },
-                    {
-                      "key_code": "escape"
-                    }
-                  ],
-                  "simultaneous_options": {
-                    "key_up_when": "all"
-                  }
-                },
-                "to_after_key_up": [
-                  {
-                    "shell_command": "osascript -e 'tell app \"System Events\" to sleep'"
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "from": {
-                  "simultaneous": [
-                    {
-                      "key_code": "right_shift"
-                    },
-                    {
-                      "key_code": "escape"
-                    }
-                  ],
-                  "simultaneous_options": {
-                    "key_up_when": "all"
-                  }
-                },
-                "to_after_key_up": [
-                  {
-                    "shell_command": "osascript -e 'tell app \"System Events\" to sleep'"
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "copy + say date with shift + f4",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "f4",
-                  "modifiers": {
-                    "mandatory": [
-                      "shift"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "shell_command": "date '+%-m/%-d/%-y' | tr -d '\n' | pbcopy && date '+%-m/%-d/%Y' | xargs say"
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "say time with f4",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "f4"
-                },
-                "to": [
-                  {
-                    "shell_command": "date '+%-I:%M' | xargs say"
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "run multiplex script with shift + command + m",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "m",
-                  "modifiers": {
-                    "mandatory": [
-                      "shift",
-                      "command"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "shell_command": "export PATH=$PATH:/opt/homebrew/bin; ~/.local/bin/multiplex"
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "open all apps with ctrl + shift + o",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "s",
-                  "modifiers": {
-                    "mandatory": [
-                      "shift",
-                      "left_control",
-                      "left_option",
-                      "left_command"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "shell_command": "~/.local/bin/openApps"
                   }
                 ],
                 "type": "basic"
@@ -1018,55 +851,6 @@
             ]
           },
           {
-            "description": "useful iMovie shortcuts",
-            "manipulators": [
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": [
-                      "^com.apple.iMovieApp$"
-                    ],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "from": {
-                  "key_code": "backslash"
-                },
-                "to": [
-                  {
-                    "key_code": "n",
-                    "modifiers": [
-                      "left_command"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "conditions": [
-                  {
-                    "bundle_identifiers": [
-                      "^com.apple.iMovieApp$"
-                    ],
-                    "type": "frontmost_application_if"
-                  }
-                ],
-                "from": {
-                  "key_code": "close_bracket"
-                },
-                "to": [
-                  {
-                    "key_code": "period",
-                    "modifiers": [
-                      "left_command"
-                    ]
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
             "description": "vowel + t/n/s at same time for accents",
             "manipulators": [
               {
@@ -1675,6 +1459,96 @@
               ]
             }
           ]
+        },
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "product_id": 28705,
+            "vendor_id": 1256
+          },
+          "simple_modifications": [
+            {
+              "from": {
+                "key_code": "left_command"
+              },
+              "to": [
+                {
+                  "key_code": "left_option"
+                }
+              ]
+            },
+            {
+              "from": {
+                "key_code": "left_option"
+              },
+              "to": [
+                {
+                  "key_code": "left_command"
+                }
+              ]
+            },
+            {
+              "from": {
+                "key_code": "right_option"
+              },
+              "to": [
+                {
+                  "key_code": "right_command"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "is_pointing_device": true,
+            "product_id": 28705,
+            "vendor_id": 1256
+          },
+          "ignore": false,
+          "simple_modifications": [
+            {
+              "from": {
+                "key_code": "left_option"
+              },
+              "to": [
+                {
+                  "key_code": "left_command"
+                }
+              ]
+            },
+            {
+              "from": {
+                "key_code": "left_command"
+              },
+              "to": [
+                {
+                  "key_code": "left_option"
+                }
+              ]
+            },
+            {
+              "from": {
+                "key_code": "right_option"
+              },
+              "to": [
+                {
+                  "key_code": "right_command"
+                }
+              ]
+            },
+            {
+              "from": {
+                "key_code": "right_command"
+              },
+              "to": [
+                {
+                  "key_code": "right_option"
+                }
+              ]
+            }
+          ]
         }
       ],
       "name": "Default profile",
@@ -1692,3 +1566,4 @@
     }
   ]
 }
+

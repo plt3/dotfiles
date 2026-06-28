@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Ctrl+space (mapped in .tmux.conf) opens up a popup running neovim with the DBUI plugin.
+# This way, you can quickly run database queries from within any tmux session.
+
+SESSION_NAME="popup-nvim"
+POPUP_WIDTH="100%"
+POPUP_HEIGHT="100%"
+
+# Check if we're currently in the popup session
+CURRENT_SESSION=$(tmux display-message -p '#S')
+if [ "$CURRENT_SESSION" = "$SESSION_NAME" ]; then
+    # We're in the popup, so detach to close it
+    tmux detach-client
+    exit 0
+fi
+
+# Check if session exists, create if not
+if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+    # Create detached session with neovim running the DBUI command
+    tmux new-session -d -s "$SESSION_NAME" "nvim -c 'DBUI'"
+fi
+
+# Toggle popup - if popup is visible, this closes it; if not, opens it
+# -E flag makes the popup close when the command exits (giving toggle behavior)
+tmux display-popup -E -w "$POPUP_WIDTH" -h "$POPUP_HEIGHT" \
+    "tmux attach-session -t $SESSION_NAME"

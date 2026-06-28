@@ -6,7 +6,7 @@ local nrepmap = require("pault.utils").normalRepeatableMap
 local jdtls = require("jdtls")
 
 mason_dap.setup({
-	ensure_installed = { "python", "codelldb", "delve", "javadbg" },
+	ensure_installed = { "python", "codelldb" },
 	automatic_setup = true,
 	handlers = {
 		function(source_name)

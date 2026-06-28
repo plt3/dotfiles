@@ -21,6 +21,9 @@ end)
 nmap("<leader>gl", function()
 	toggle("git", "Git log")
 end)
+nmap("<leader>gb", function()
+	toggle("fugitiveblame", "Git blame")
+end)
 nmap("<leader>gp", ":Git push<CR>")
 -- use these remaps when running Gvdiffsplit!
 nmap("<leader>gu", ":diffget //2<CR>")
@@ -41,7 +44,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- vimux configuration
 vim.g.VimuxOrientation = "h"
-vim.g.VimuxHeight = "45"
+vim.g.VimuxHeight = "47%"
 nmap("<leader>vp", ":silent wall <bar> VimuxPromptCommand<CR>")
 -- because my weird .inputrc makes VimuxClearTerminalScreen not work
 nmap("<leader>vc", ':call VimuxSendKeys("ii")<CR>')
@@ -83,6 +86,8 @@ nmap("-", ":HopWord<CR>")
 
 -- comment configuration
 require("Comment").setup()
+local ft = require('Comment.ft')
+ft.mysql = "-- %s"
 
 -- neoscroll configuration
 require("neoscroll").setup({ mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "zt", "zz", "zb" } })
@@ -136,6 +141,13 @@ require("debugprint").setup({
 			mid_var = "{",
 			right_var = '}")',
 		},
+		["php"] = {
+			left = 'echo "',
+			right = '\\n"; exit();',
+			left_var = 'echo "',
+			mid_var = '\\n"; print_r($',
+			right_var = '); exit();',
+		},
 	},
 })
 
@@ -144,6 +156,17 @@ require("pault.obsidian")
 
 -- rsync.nvim configuration
 require("rsync").setup({ sync_on_save = false })
+nmap("<leader>r", ":wall <bar> RsyncUp<CR>", {})
+
+-- lol
+require("2048").setup({
+    keys = {
+        up = "<Up>",
+        down = "<Down>",
+        left = "<Left>",
+        right = "<Right>",
+    },
+})
 
 -- vim-dadbod-ui configuration
 vim.g.db_ui_use_nerd_fonts = 1
@@ -152,9 +175,19 @@ nmap("<leader>ms", ":tabe <bar> DBUI<CR>")
 local dadbod_group = vim.api.nvim_create_augroup("DadbodGroup", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
-		-- map <leader>e to only execute query under cursor (if separated by blank lines)
-		nmap("<leader>e", "vip S", { buffer = true, remap = true })
+		-- map Enter to only execute query under cursor (if separated by blank lines)
+		nmap("<Enter>", "vip S", { buffer = true, remap = true })
 	end,
 	group = dadbod_group,
 	pattern = { "sql", "mysql" },
+})
+
+-- substitute.nvim configuration
+require('substitute').setup()
+nmap('s', require('substitute').operator, { noremap = true, silent = true })
+vim.keymap.set("x", "s", require('substitute').visual, { noremap = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "php",
+	callback = function() vim.bo.syntax = "php" end,
 })

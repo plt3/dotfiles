@@ -1,5 +1,46 @@
-local lsp = require("lsp-zero")
-local nmap = require("pault.utils").normalMap
+-- Set up LSP keybindings when LSP attaches to a buffer
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local bufnr = args.buf
+
+		local opts = { silent = true, buffer = bufnr }
+
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+		vim.keymap.set("n", "go", vim.lsp.buf.type_definition, opts)
+		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+		vim.keymap.set("n", "<leader>n", vim.lsp.buf.rename, opts)
+		vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, opts)
+		vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+		vim.keymap.set("n", "<C-c>", function() vim.diagnostic.jump({ count = -1 }) end, opts)
+		vim.keymap.set("n", "<C-t>", function() vim.diagnostic.jump({ count = 1 }) end, opts)
+	end,
+})
+
+-- Set up default capabilities for all LSP servers
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- Configure diagnostic settings
+vim.diagnostic.config({
+	virtual_text = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "✘",
+			[vim.diagnostic.severity.WARN] = "▲",
+			[vim.diagnostic.severity.HINT] = "⚑",
+			[vim.diagnostic.severity.INFO] = "»",
+		},
+	},
+	update_in_insert = false,
+	underline = true,
+	severity_sort = true,
+	float = {
+		border = 'rounded',
+		source = true,
+	},
+})
 
 -- mason.nvim/lspconfig setup
 require("mason").setup()
@@ -8,84 +49,23 @@ require("mason-lspconfig").setup({
 		"pyright",
 		"ts_ls",
 		"clangd",
-		"gopls",
-		"jdtls",
 		"lua_ls",
-		"phpactor",
-		"psalm",
-	},
-	handlers = {
-		lsp.default_setup,
-		lua_ls = function()
-			local lua_opts = lsp.nvim_lua_ls()
-			require("lspconfig").lua_ls.setup(lua_opts)
-		end,
-		jdtls = lsp.noop,
+		"intelephense",
 	},
 })
 
--- 'recommended' wasn't letting me setup nvim-cmp how I wanted (see completion.lua)
-lsp.preset("lsp-compe")
-
-lsp.set_preferences({
-	set_lsp_keymaps = false,
-})
-
--- silence weird warning about multiple offset_encodings due to clangd + null-ls
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.offsetEncoding = "utf-8"
-lsp.configure("clangd", {
+vim.lsp.config("intelephense", {
 	capabilities = capabilities,
-})
-
-local function onAttach(client, bufnr)
-	local opts = { silent = true, buffer = bufnr }
-
-	nmap("K", vim.lsp.buf.hover, opts)
-	nmap("gd", vim.lsp.buf.definition, opts)
-	nmap("gD", vim.lsp.buf.declaration, opts)
-	nmap("gi", vim.lsp.buf.implementation, opts)
-	nmap("go", vim.lsp.buf.type_definition, opts)
-	nmap("gr", vim.lsp.buf.references, opts)
-	nmap("<leader>n", vim.lsp.buf.rename, opts)
-	nmap("<leader>a", vim.lsp.buf.code_action, opts)
-	nmap("gl", vim.diagnostic.open_float, opts)
-	nmap("<C-c>", vim.diagnostic.goto_prev, opts)
-	nmap("<C-t>", vim.diagnostic.goto_next, opts)
-end
-
--- choose my own keymaps
-lsp.on_attach(onAttach)
-
-lsp.setup()
-
-vim.diagnostic.config({
-	virtual_text = true,
-})
-
--- start jdtls with nvim-jdtls
-local javaGroup = vim.api.nvim_create_augroup("JavaGroup", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-	callback = function()
-		local jdtlsConfig = {
-			cmd = {
-				vim.fn.expand("$HOME/.local/share/nvim/mason/bin/jdtls"),
-				"-data", -- didn't have to specify this before but for some reason this is necessary now?
-				vim.fn.expand("$HOME/.cache/jdtls/workspace"),
+	settings = {
+		intelephense = {
+			environment = {
+				shortOpenTag = true,
 			},
-			root_dir = vim.fs.dirname(vim.fs.find({ ".gradlew", ".git", "mvnw" }, { upward = true })[1]),
-			on_attach = onAttach,
-			init_options = {
-				bundles = {
-					vim.fn.glob(
-						"~/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar",
-						1
-					),
-				},
-			},
-		}
-		require("jdtls").start_or_attach(jdtlsConfig)
-	end,
-	group = javaGroup,
-	pattern = "java",
+		},
+	},
 })
+
+-- nvim-lint setup
+require('lint').linters_by_ft = {
+	groovy = {'npm-groovy-lint'},
+}
