@@ -60,11 +60,6 @@ countfiles() {
 	\ls -1q "$1" | wc -l
 }
 
-# make bash completion work
-[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
-# not sure why this doesn't already get sourced by the line above but make ssh completion work
-. /opt/homebrew/Cellar/bash-completion@2/2.17.0/share/bash-completion/completions/ssh
-
 # initialize zoxide
 eval "$(zoxide init bash)"
 
